@@ -166,6 +166,20 @@ select.ctl{appearance:none; -webkit-appearance:none; padding-right:34px; cursor:
 select.ctl.na{color:var(--muted); font-style:italic}
 .ctl::placeholder{color:color-mix(in srgb, var(--muted) 75%, transparent)}
 .pv{display:none}
+/* ditado por voz */
+.fld.dict{position:relative}
+.fld.dict textarea.ctl{padding-right:48px}
+.mic{position:absolute; right:7px; top:6px; width:34px; height:34px; border-radius:50%; border:1px solid var(--line); background:var(--surface); color:var(--ink-2); display:grid; place-items:center; cursor:pointer; transition:all .15s; padding:0}
+.mic svg{width:17px; height:17px}
+.mic:hover{border-color:var(--accent); color:var(--accent)}
+.mic.on{background:#B23A32; border-color:#B23A32; color:#fff; animation:pulse 1.4s ease-out infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(178,58,50,.45)}100%{box-shadow:0 0 0 12px rgba(178,58,50,0)}}
+.fld.listening textarea.ctl{border-color:#B23A32; background:var(--surface)}
+.interim{display:none; font-size:13px; color:var(--muted); font-style:italic; margin-top:6px; padding-left:2px}
+.fld.listening .interim{display:flex; gap:8px; align-items:baseline}
+.interim .rec-dot{flex:none; font-style:normal; font-weight:600; color:#B23A32; font-size:11px; letter-spacing:.08em; text-transform:uppercase}
+.no-speech .mic{display:none}
+.no-speech .fld.dict textarea.ctl{padding-right:11px}
 .chips{display:flex; flex-wrap:wrap; gap:6px}
 .chip{border:1px solid var(--line); background:var(--surface-2); border-radius:99px; padding:5px 12px; font-size:13px; cursor:pointer; transition:all .15s}
 .chip:hover{border-color:var(--accent)}
@@ -260,7 +274,7 @@ select.ctl.na{color:var(--muted); font-style:italic}
   :root{--bg:#fff; --surface:#fff; --surface-2:#fff; --ink:#1C2430; --ink-2:#3A4452; --muted:#6B7280; --line:#DAD6CF; --line-2:#ECE9E4; --accent:#9A7B4F; --accent-soft:#F3EDE3; --navy:#1B2735; color-scheme:light}
   html,body{background:#fff !important; color:#1C2430 !important; font-size:10.5pt}
   *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
-  .no-print,.bar,.howto,.banner,.btn,.later-tg,.toast,.add{display:none !important}
+  .no-print,.bar,.howto,.banner,.btn,.later-tg,.toast,.add,.mic,.interim{display:none !important}
   .print-only{display:block}
   .cover{page:cover; min-height:0; height:297mm; width:210mm; padding:26mm 22mm 18mm; break-after:page}
   .cover-main{padding:0}
@@ -378,6 +392,7 @@ select.ctl.na{color:var(--muted); font-style:italic}
       <li><b>Personalize:</b> digite o nome do cliente na capa e clique em <em>Baixar HTML personalizado para envio</em>. O arquivo gerado já abre com o nome do cliente na capa — é esse que você envia aos sócios.</li>
       <li><b>Preencha:</b> cada pergunta tem resposta rápida (quando faz sentido, com a opção <em>Não se aplica</em>) e um campo de texto livre, sem limite de tamanho.</li>
       <li><b>Salvamento:</b> tudo fica salvo automaticamente neste navegador. Para enviar as respostas a outra pessoa, use <em>Salvar cópia</em> — o HTML baixado leva as respostas junto.</li>
+      <li><b>Ditado por voz:</b> clique no <em>microfone</em> de qualquer campo de texto e fale. O texto ditado entra no fim do campo e você pode corrigir com o teclado ao mesmo tempo, sem parar a gravação. Comandos: “vírgula”, “ponto final”, “ponto de interrogação”, “dois pontos”, “nova linha”, “novo parágrafo”. Clique no microfone de novo para parar. Funciona no Chrome, Edge e Safari (precisa de internet e de permitir o microfone).</li>
       <li><b>PDF:</b> clique em <em>Gerar PDF</em> e escolha <em>Salvar como PDF</em> na janela de impressão (recomendado: desmarcar “Cabeçalhos e rodapés” e manter “Gráficos de fundo”).</li>
       <li><b>Pendências:</b> o checklist no final lista automaticamente toda pergunta sem resposta ou marcada como “confirmar depois”.</li>
     </ol>
@@ -615,8 +630,91 @@ var toastT;function toast(msg){var t=$("toast");t.textContent=msg;t.classList.ad
 function fText(get,set,o){o=o||{};
   var ta=h("textarea",{class:"ctl",rows:o.rows||1,placeholder:o.ph||"","aria-label":o.aria||o.ph||""});ta.value=get()||"";
   ta.addEventListener("input",function(){set(ta.value);grow(ta);changed();});
-  return h("div",{class:"fld"},ta,h("div",{class:"pv"}));
+  var iv=h("div",{class:"interim","aria-live":"polite"});
+  var wrap=h("div",{class:"fld dict"},ta,iv,h("div",{class:"pv"}));
+  var mic=h("button",{type:"button",class:"mic",title:"Ditar por voz (clique para iniciar/parar)","aria-label":"Ditar por voz","aria-pressed":"false"},micIcon());
+  mic.addEventListener("click",function(ev){ev.preventDefault();Dict.toggle({ta:ta,btn:mic,iv:iv,wrap:wrap});});
+  wrap.insertBefore(mic,iv);
+  return wrap;
 }
+function micIcon(){
+  var ns="http://www.w3.org/2000/svg",svg=document.createElementNS(ns,"svg");
+  svg.setAttribute("viewBox","0 0 24 24");svg.setAttribute("fill","none");svg.setAttribute("stroke","currentColor");svg.setAttribute("stroke-width","1.9");svg.setAttribute("stroke-linecap","round");
+  ["M12 3a3 3 0 00-3 3v6a3 3 0 006 0V6a3 3 0 00-3-3z","M5 11a7 7 0 0014 0","M12 18v3"].forEach(function(d){var p=document.createElementNS(ns,"path");p.setAttribute("d",d);svg.append(p);});
+  return svg;
+}
+
+/* ================= DITADO POR VOZ ================= */
+var Dict=(function(){
+  var SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){document.documentElement.classList.add("no-speech");return {toggle:function(){},stop:function(){}};}
+  var rec=null,cur=null,want=false,lastErr="";
+  var CMDS=[[/\s*\bponto de interroga[çc][ãa]o\b/gi,"?"],[/\s*\bponto de exclama[çc][ãa]o\b/gi,"!"],[/\s*\bponto e v[íi]rgula\b/gi,";"],
+    [/\s*\bponto final\b/gi,"."],[/\s*\bv[íi]rgula\b/gi,","],[/\s*\bdois pontos\b/gi,":"],
+    [/\s*\bnovo par[áa]grafo\b\s*/gi,"\n\n"],[/\s*\bnova linha\b\s*/gi,"\n"]];
+  function cap(t){return t.replace(/^(\s*)(\p{Ll})/u,function(m,a,b){return a+b.toUpperCase();});}
+  function format(t){
+    t=t.trim();CMDS.forEach(function(c){t=t.replace(c[0],c[1]);});
+    t=t.replace(/\s+([,.;:!?])/g,"$1").replace(/([,.;:!?])(?=[^\s\n])/g,"$1 ").replace(/[ \t]*\n[ \t]*/g,"\n")
+       .replace(/([.!?]\s+|\n)(\p{Ll})/gu,function(m,a,b){return a+b.toUpperCase();});
+    return t;
+  }
+  function insert(ta,text){
+    text=format(text);if(!text)return;
+    var v=ta.value,ss=ta.selectionStart,se=ta.selectionEnd,focused=document.activeElement===ta;
+    var sep="";
+    if(v&&!/[\s\n]$/.test(v)&&!/^[,.;:!?\n]/.test(text))sep=" ";
+    if(!v.trim()||/[.!?]\s*$/.test(v)||/\n\s*$/.test(v))text=cap(text);
+    ta.value=v+sep+text;
+    /* mantém o cursor/seleção de quem está digitando */
+    if(focused){var atEnd=ss===v.length&&se===v.length;try{if(atEnd)ta.setSelectionRange(ta.value.length,ta.value.length);else ta.setSelectionRange(ss,se);}catch(e){}}
+    ta.dispatchEvent(new Event("input",{bubbles:true}));
+  }
+  function ui(t,on){
+    t.btn.classList.toggle("on",on);t.btn.setAttribute("aria-pressed",on?"true":"false");
+    t.btn.title=on?"Parar ditado":"Ditar por voz (clique para iniciar/parar)";
+    t.wrap.classList.toggle("listening",on);
+    if(on)setIv(t,"");else t.iv.innerHTML="";
+  }
+  function setIv(t,txt){
+    t.iv.innerHTML="";
+    t.iv.append(h("span",{class:"rec-dot"},"● Ouvindo"),h("span",null,txt||"fale naturalmente — pode corrigir com o teclado ao mesmo tempo"));
+  }
+  function begin(t){
+    cur=t;want=true;lastErr="";
+    rec=new SR();rec.lang="pt-BR";rec.continuous=true;rec.interimResults=true;rec.maxAlternatives=1;
+    rec.onresult=function(e){
+      var interim="";
+      for(var i=e.resultIndex;i<e.results.length;i++){var r=e.results[i];
+        if(r.isFinal)insert(t.ta,r[0].transcript);else interim+=r[0].transcript;}
+      setIv(t,interim.trim());
+    };
+    rec.onerror=function(e){
+      lastErr=e.error;
+      if(e.error==="not-allowed"||e.error==="service-not-allowed"){want=false;toast("Permita o uso do microfone no navegador para ditar.");}
+      else if(e.error==="network"){want=false;toast("O ditado por voz precisa de conexão com a internet.");}
+      else if(e.error==="audio-capture"){want=false;toast("Nenhum microfone encontrado.");}
+    };
+    rec.onend=function(){
+      if(want&&cur===t){try{rec.start();return;}catch(err){}}
+      ui(t,false);if(cur===t){cur=null;rec=null;}
+    };
+    try{rec.start();ui(t,true);}catch(err){want=false;ui(t,false);toast("Não foi possível iniciar o microfone.");}
+  }
+  function stop(){
+    if(!cur)return;var t=cur;want=false;
+    try{rec&&rec.stop();}catch(e){}
+    ui(t,false);cur=null;
+  }
+  function toggle(t){
+    if(cur&&cur.ta===t.ta){stop();return;}
+    if(cur){var old=rec;want=false;try{old&&old.abort();}catch(e){}ui(cur,false);cur=null;}
+    begin(t);t.ta.focus({preventScroll:true});
+  }
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"&&cur)stop();});
+  window.addEventListener("pagehide",stop);
+  return {toggle:toggle,stop:stop};
+})();
 function fNum(get,set,o){o=o||{};
   var i=h("input",{class:"ctl",type:"text",inputmode:"decimal",placeholder:o.ph||""});i.value=get()||"";
   i.addEventListener("input",function(){set(i.value);changed();if(o.after)o.after();});
