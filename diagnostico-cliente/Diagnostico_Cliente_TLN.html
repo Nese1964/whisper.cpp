@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagnóstico do Cliente · Consultoria TLN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F5F4F1; --surface:#FFFFFF; --surface-2:#FAF9F7; --ink:#1C2430; --ink-2:#3A4452; --muted:#6B7280;
+  --line:#E4E1DB; --line-2:#EFECE7;
+  --navy:#1B2735; --navy-2:#243447; --accent:#9A7B4F; --accent-soft:#F3EDE3;
+  --ok:#3E7A5A; --ok-soft:#E7F1EB; --warn:#A8701E; --warn-soft:#FBF1E1; --bad:#A1453F; --bad-soft:#F8E8E6;
+  --focus:rgba(154,123,79,.35);
+  --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --radius:10px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#11151B; --surface:#181E26; --surface-2:#1D242E; --ink:#E8E6E1; --ink-2:#C9CDD3; --muted:#98A0AB;
+    --line:#2B333E; --line-2:#232A34;
+    --navy:#0E141B; --navy-2:#16202B; --accent:#C9A773; --accent-soft:#2A241A;
+    --ok:#7DBE98; --ok-soft:#1C2A22; --warn:#E0A955; --warn-soft:#2D2415; --bad:#E08A83; --bad-soft:#2E1D1C;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#11151B; --surface:#181E26; --surface-2:#1D242E; --ink:#E8E6E1; --ink-2:#C9CDD3; --muted:#98A0AB;
+  --line:#2B333E; --line-2:#232A34;
+  --navy:#0E141B; --navy-2:#16202B; --accent:#C9A773; --accent-soft:#2A241A;
+  --ok:#7DBE98; --ok-soft:#1C2A22; --warn:#E0A955; --warn-soft:#2D2415; --bad:#E08A83; --bad-soft:#2E1D1C;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:120px}
+body{margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased}
+button,input,select,textarea{font:inherit; color:inherit}
+a{color:inherit}
+
+/* ---------- CAPA ---------- */
+.cover{position:relative; min-height:100vh; background:#18222F; color:#F4F1EC; overflow:hidden; display:flex; flex-direction:column; padding:48px clamp(20px,7vw,96px) 40px}
+.cover::before{content:""; position:absolute; inset:0; background:
+  radial-gradient(1200px 600px at 110% -10%, rgba(201,167,115,.16), transparent 60%),
+  radial-gradient(900px 500px at -20% 120%, rgba(255,255,255,.05), transparent 60%); pointer-events:none}
+.cover::after{content:""; position:absolute; right:clamp(20px,7vw,96px); top:0; bottom:0; width:1px; background:linear-gradient(transparent, rgba(201,167,115,.45), transparent)}
+.cover > *{position:relative}
+.brand{display:flex; align-items:center; gap:16px}
+.mono{width:58px; height:58px; border:1px solid #C9A773; display:grid; place-items:center; font-family:var(--serif); font-weight:600; font-size:22px; letter-spacing:.08em; color:#E7D3AE}
+.brand-txt{font-size:12px; letter-spacing:.32em; text-transform:uppercase; color:#C9BFAF}
+.brand-txt b{display:block; color:#F4F1EC; font-weight:600; letter-spacing:.34em}
+.cover-main{margin:auto 0; padding:56px 0 40px; max-width:880px}
+.eyebrow{font-size:12px; letter-spacing:.34em; text-transform:uppercase; color:#C9A773; font-weight:600}
+.consultora{font-family:var(--serif); font-weight:600; font-size:clamp(40px,7.2vw,84px); line-height:1.02; margin:14px 0 0; letter-spacing:.005em}
+.rule{width:84px; height:2px; background:#C9A773; margin:30px 0 28px}
+.doc-title{font-size:clamp(20px,2.6vw,28px); font-weight:300; margin:0; color:#EDE8DF; letter-spacing:.01em}
+.doc-sub{margin:6px 0 0; color:#AFA79A; font-size:15px; letter-spacing:.04em}
+.client-box{margin-top:44px; border-left:2px solid #C9A773; padding:6px 0 6px 22px}
+.client-box .lbl{font-size:11px; letter-spacing:.3em; text-transform:uppercase; color:#AFA79A}
+.client-input{display:block; width:100%; background:transparent; border:0; border-bottom:1px dashed rgba(244,241,236,.28); color:#FFFFFF; font-family:var(--serif); font-weight:600; font-size:clamp(28px,4.4vw,48px); line-height:1.15; padding:4px 0 8px; outline:none; resize:none; overflow:hidden}
+.client-input::placeholder{color:rgba(244,241,236,.35)}
+.client-input:focus{border-bottom-color:#C9A773}
+.cover-meta{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px 28px; margin-top:34px; max-width:880px}
+.cover-meta label{display:block}
+.cover-meta .lbl{display:block; font-size:10.5px; letter-spacing:.26em; text-transform:uppercase; color:#AFA79A; margin-bottom:4px}
+.cover-meta input{width:100%; background:transparent; border:0; border-bottom:1px solid rgba(244,241,236,.18); color:#F4F1EC; padding:6px 0; outline:none; font-size:15px}
+.cover-meta input:focus{border-bottom-color:#C9A773}
+.cover-meta input::placeholder{color:rgba(244,241,236,.35)}
+.cover-meta input[type=date]{color-scheme:dark}
+.cover-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:38px}
+.cover-foot{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; font-size:11px; letter-spacing:.24em; text-transform:uppercase; color:#8F887C; border-top:1px solid rgba(244,241,236,.12); padding-top:18px}
+.btn{display:inline-flex; align-items:center; gap:8px; border-radius:8px; border:1px solid var(--line); background:var(--surface); color:var(--ink); padding:9px 14px; font-size:13.5px; font-weight:500; cursor:pointer; transition:background .15s, border-color .15s, transform .05s; white-space:nowrap}
+.btn:hover{border-color:var(--accent)}
+.btn:active{transform:translateY(1px)}
+.btn svg{width:16px; height:16px; flex:none}
+.btn.primary{background:var(--navy); color:#F4F1EC; border-color:var(--navy)}
+.btn.primary:hover{background:var(--navy-2)}
+.btn.gold{background:#C9A773; border-color:#C9A773; color:#18222F; font-weight:600}
+.btn.gold:hover{background:#D5B687}
+.btn.ghost-dark{background:transparent; color:#F4F1EC; border-color:rgba(244,241,236,.3)}
+.btn.ghost-dark:hover{border-color:#C9A773}
+.btn.small{padding:6px 10px; font-size:12.5px}
+.btn.link{border:0; background:none; padding:4px 6px; color:var(--muted)}
+.btn.link:hover{color:var(--bad)}
+
+/* ---------- BARRA ---------- */
+.bar{position:sticky; top:0; z-index:20; background:color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter:saturate(1.2) blur(8px); border-bottom:1px solid var(--line)}
+.bar-top{display:flex; align-items:center; gap:16px; padding:10px clamp(16px,4vw,40px)}
+.bar-brand{display:flex; align-items:center; gap:10px; min-width:0; flex:1}
+.bar-mono{width:30px; height:30px; border:1px solid var(--accent); display:grid; place-items:center; font-family:var(--serif); font-weight:700; font-size:12.5px; color:var(--accent); flex:none}
+.bar-client{font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.bar-client small{display:block; font-weight:400; color:var(--muted); font-size:11.5px; letter-spacing:.04em}
+.prog{display:flex; align-items:center; gap:10px; font-size:12.5px; color:var(--muted); white-space:nowrap}
+.prog-track{width:120px; height:6px; background:var(--line-2); border-radius:99px; overflow:hidden}
+.prog-fill{height:100%; width:0; background:var(--accent); border-radius:99px; transition:width .3s}
+.bar-actions{display:flex; gap:8px}
+.nav{display:flex; gap:4px; overflow-x:auto; padding:0 clamp(16px,4vw,40px) 8px; scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{font-size:12.5px; text-decoration:none; color:var(--muted); padding:5px 10px; border-radius:99px; white-space:nowrap; border:1px solid transparent}
+.nav a:hover{color:var(--ink); border-color:var(--line)}
+.nav a.cur{color:var(--ink); background:var(--accent-soft); border-color:transparent}
+.nav a .cnt{font-variant-numeric:tabular-nums; opacity:.75; margin-left:4px}
+.saved{font-size:11.5px; color:var(--muted)}
+
+/* ---------- CONTEÚDO ---------- */
+main{max-width:1040px; margin:0 auto; padding:24px clamp(16px,4vw,40px) 80px}
+.howto{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:4px 18px; margin:8px 0 8px}
+.howto summary{cursor:pointer; padding:12px 0; font-weight:600; font-size:14px; list-style:none; display:flex; align-items:center; gap:8px}
+.howto summary::-webkit-details-marker{display:none}
+.howto summary::before{content:"+"; color:var(--accent); font-weight:700; width:12px}
+.howto[open] summary::before{content:"–"}
+.howto ol{margin:0 0 14px; padding-left:20px; color:var(--ink-2); font-size:14px}
+.howto li{margin:4px 0}
+.banner{display:none; align-items:center; justify-content:space-between; gap:12px; background:var(--accent-soft); border:1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius:var(--radius); padding:10px 14px; font-size:13.5px; margin:8px 0}
+.banner.show{display:flex}
+
+.section{padding-top:48px}
+.sec-head{display:flex; align-items:flex-end; justify-content:space-between; gap:16px; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:22px}
+.sec-num{font-family:var(--serif); color:var(--accent); font-size:18px; font-weight:600; letter-spacing:.06em}
+.sec-head h2{font-family:var(--serif); font-weight:600; font-size:clamp(28px,3.6vw,36px); line-height:1.1; margin:2px 0 0}
+.sec-head p{margin:6px 0 0; color:var(--muted); font-size:14px; max-width:640px}
+.sec-stat{font-size:12.5px; color:var(--muted); white-space:nowrap; text-align:right}
+.sec-stat b{display:block; font-size:22px; color:var(--ink); font-weight:600; font-variant-numeric:tabular-nums}
+
+.block-title{display:flex; align-items:center; gap:12px; margin:30px 0 12px; font-size:12px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-2); font-weight:600}
+.block-title::after{content:""; flex:1; height:1px; background:var(--line)}
+.block-title .bt-cnt{letter-spacing:.04em; text-transform:none; font-weight:500; color:var(--muted)}
+
+.q{background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--line); border-radius:var(--radius); padding:16px 18px 12px; margin-bottom:12px; transition:border-color .2s, box-shadow .2s}
+.q.done{border-left-color:var(--ok)}
+.q.later{border-left-color:var(--warn)}
+.q:focus-within{box-shadow:0 0 0 3px var(--focus)}
+.q-head{display:flex; gap:12px; align-items:flex-start}
+.qn{font-family:var(--serif); font-weight:700; font-size:20px; color:var(--accent); min-width:28px; line-height:1.2; font-variant-numeric:tabular-nums}
+.q-head h3{flex:1; margin:0; font-size:15.5px; font-weight:600; line-height:1.45}
+.prio{font-size:10.5px; letter-spacing:.12em; text-transform:uppercase; font-weight:600; padding:3px 8px; border-radius:99px; white-space:nowrap}
+.prio.Alta{background:var(--bad-soft); color:var(--bad)}
+.prio.Média{background:var(--warn-soft); color:var(--warn)}
+.prio.Baixa{background:var(--line-2); color:var(--muted)}
+.tip{margin:4px 0 12px 40px; color:var(--muted); font-size:13px}
+.tip b{font-weight:600; color:var(--ink-2)}
+.q-body{margin-left:40px; display:grid; gap:10px}
+.q-foot{display:flex; justify-content:space-between; align-items:center; gap:12px; margin:10px 0 0 40px; font-size:12.5px; color:var(--muted)}
+.status{display:inline-flex; align-items:center; gap:6px}
+.status::before{content:""; width:7px; height:7px; border-radius:50%; background:var(--line)}
+.q.done .status{color:var(--ok)} .q.done .status::before{background:var(--ok)}
+.q.later .status{color:var(--warn)} .q.later .status::before{background:var(--warn)}
+.later-tg{display:inline-flex; align-items:center; gap:6px; cursor:pointer; user-select:none}
+.later-tg input{accent-color:var(--warn)}
+
+.ctl{width:100%; background:var(--surface-2); border:1px solid var(--line); border-radius:8px; padding:9px 11px; outline:none; transition:border-color .15s, background .15s}
+.ctl:focus{border-color:var(--accent); background:var(--surface)}
+textarea.ctl{resize:vertical; min-height:44px; line-height:1.5; overflow:hidden; field-sizing:content}
+select.ctl{appearance:none; -webkit-appearance:none; padding-right:34px; cursor:pointer; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%239A7B4F' stroke-width='1.6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 12px center}
+select.ctl.na{color:var(--muted); font-style:italic}
+.ctl::placeholder{color:color-mix(in srgb, var(--muted) 75%, transparent)}
+.pv{display:none}
+.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chip{border:1px solid var(--line); background:var(--surface-2); border-radius:99px; padding:5px 12px; font-size:13px; cursor:pointer; transition:all .15s}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--navy); border-color:var(--navy); color:#F4F1EC}
+:root[data-theme="dark"] .chip.on{background:var(--accent); border-color:var(--accent); color:#11151B}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.on{background:var(--accent); border-color:var(--accent); color:#11151B}}
+.chip.na-chip{font-style:italic}
+.chips-none{display:none}
+
+.card{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px; margin-bottom:14px}
+.card-head{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px}
+.card-head h3{margin:0; font-size:14px; font-weight:600; letter-spacing:.02em}
+.card-head h3 span{font-family:var(--serif); color:var(--accent); font-size:18px; margin-right:6px}
+.grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px 14px}
+.lf{display:block; min-width:0}
+.lf.w2{grid-column:span 2} .lf.w4{grid-column:1/-1}
+.lf .lbl{display:block; font-size:11.5px; font-weight:600; color:var(--ink-2); margin-bottom:4px; letter-spacing:.02em}
+.calc{background:var(--accent-soft); border-radius:8px; padding:9px 11px; font-weight:600; font-variant-numeric:tabular-nums; min-height:42px}
+.group-h{grid-column:1/-1; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--accent); font-weight:700; margin-top:8px; padding-top:10px; border-top:1px solid var(--line-2)}
+.group-h:first-child{margin-top:0; padding-top:0; border-top:0}
+.add{width:100%; justify-content:center; border-style:dashed; background:transparent; color:var(--ink-2); padding:12px}
+.ref{background:var(--surface-2); border:1px solid var(--line); border-radius:var(--radius); padding:14px 18px; margin-top:18px}
+.ref h4{margin:0 0 8px; font-size:12px; letter-spacing:.18em; text-transform:uppercase; color:var(--ink-2)}
+.ref dl{display:grid; grid-template-columns:120px 1fr; gap:6px 14px; margin:0; font-size:13.5px}
+.ref dt{font-weight:600} .ref dd{margin:0; color:var(--ink-2)}
+.summary{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; margin-bottom:18px}
+.kpi{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:14px 16px}
+.kpi .k{font-size:11.5px; color:var(--muted); letter-spacing:.04em}
+.kpi .v{font-size:24px; font-weight:600; font-variant-numeric:tabular-nums; margin-top:2px}
+.kpi .v.ok{color:var(--ok)} .kpi .v.warn{color:var(--warn)} .kpi .v.bad{color:var(--bad)}
+
+.budget-top{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-bottom:16px}
+.chan{display:grid; grid-template-columns:1.3fr .8fr 1fr .6fr .9fr .9fr; gap:10px; align-items:start; background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); padding:12px 14px; margin-bottom:8px}
+.chan.off{opacity:.55}
+.chan-name{font-weight:600; padding-top:22px; font-size:14px}
+.chan .extra{grid-column:1/-1; display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px}
+.total-row{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; align-items:center; background:var(--navy); color:#F4F1EC; border-radius:var(--radius); padding:14px 18px; margin-top:12px; font-variant-numeric:tabular-nums}
+.total-row b{font-size:18px}
+.pct-ok{color:#9ED3B2} .pct-bad{color:#F2C58A}
+
+.acc{display:grid; grid-template-columns:1.6fr .9fr 1fr 1.5fr auto; gap:10px; align-items:start; background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--line); border-radius:var(--radius); padding:12px 14px; margin-bottom:8px}
+.acc.st-Recebido{border-left-color:var(--ok)} .acc.st-Solicitado{border-left-color:var(--warn)} .acc.st-Pendente{border-left-color:var(--bad)}
+.acc-item{font-weight:600; font-size:14px; padding-top:8px}
+.cat{display:inline-block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; background:var(--line-2); color:var(--ink-2); border-radius:99px; padding:3px 9px; margin-top:6px}
+
+/* checklist de pendências */
+.pend-group{background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); margin-bottom:14px; overflow:hidden}
+.pend-group h3{margin:0; padding:12px 18px; font-size:13px; letter-spacing:.14em; text-transform:uppercase; background:var(--surface-2); border-bottom:1px solid var(--line); display:flex; justify-content:space-between; gap:12px}
+.pend-group h3 span{letter-spacing:.02em; text-transform:none; color:var(--muted); font-weight:500}
+.pend-group ul{list-style:none; margin:0; padding:4px 0}
+.pend-group li{display:flex; gap:12px; align-items:flex-start; padding:10px 18px; border-bottom:1px solid var(--line-2); cursor:pointer}
+.pend-group li:last-child{border-bottom:0}
+.pend-group li:hover{background:var(--surface-2)}
+.box{width:16px; height:16px; border:1.5px solid var(--ink-2); border-radius:3px; flex:none; margin-top:3px}
+.pend-txt{flex:1; font-size:14px}
+.pend-txt small{display:block; color:var(--muted); font-size:12px}
+.tag{font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; font-weight:600; padding:3px 8px; border-radius:99px; white-space:nowrap; background:var(--bad-soft); color:var(--bad)}
+.tag.later{background:var(--warn-soft); color:var(--warn)}
+.all-done{background:var(--ok-soft); color:var(--ok); border-radius:var(--radius); padding:18px; text-align:center; font-weight:600}
+
+.doc-end{margin-top:56px; padding-top:18px; border-top:1px solid var(--line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12px; color:var(--muted); letter-spacing:.06em}
+.toast{position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(20px); background:var(--navy); color:#F4F1EC; padding:10px 16px; border-radius:8px; font-size:13.5px; opacity:0; pointer-events:none; transition:all .25s; z-index:50; max-width:calc(100vw - 32px)}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+.print-only{display:none}
+
+@media screen and (max-width:820px){
+  .cover::after{display:none}
+  .cover-meta{grid-template-columns:1fr}
+  .grid{grid-template-columns:1fr 1fr}
+  .lf.w2{grid-column:1/-1}
+  .chan{grid-template-columns:1fr 1fr}
+  .chan-name{grid-column:1/-1; padding-top:0}
+  .chan .extra{grid-template-columns:1fr}
+  .acc{grid-template-columns:1fr 1fr}
+  .acc-item{grid-column:1/-1}
+  .budget-top,.summary{grid-template-columns:1fr}
+  .prog-track{display:none}
+  .bar-actions .lbl-long{display:none}
+  .tip,.q-body,.q-foot{margin-left:0}
+}
+@media screen and (max-width:520px){
+  .grid{grid-template-columns:1fr}
+  .bar-top{flex-wrap:wrap}
+  .q{padding:14px}
+  .ref dl{grid-template-columns:1fr}
+}
+
+/* ---------- IMPRESSÃO / PDF ---------- */
+@page{size:A4; margin:16mm 14mm 16mm}
+@page cover{margin:0}
+@media print{
+  :root{--bg:#fff; --surface:#fff; --surface-2:#fff; --ink:#1C2430; --ink-2:#3A4452; --muted:#6B7280; --line:#DAD6CF; --line-2:#ECE9E4; --accent:#9A7B4F; --accent-soft:#F3EDE3; --navy:#1B2735; color-scheme:light}
+  html,body{background:#fff !important; color:#1C2430 !important; font-size:10.5pt}
+  *{-webkit-print-color-adjust:exact; print-color-adjust:exact}
+  .no-print,.bar,.howto,.banner,.btn,.later-tg,.toast,.add{display:none !important}
+  .print-only{display:block}
+  .cover{page:cover; min-height:0; height:297mm; width:210mm; padding:26mm 22mm 18mm; break-after:page}
+  .cover-main{padding:0}
+  .client-input{border-bottom:0}
+  .cover-meta input{border-bottom:0}
+  main{max-width:none; padding:0}
+  .section{padding-top:0; break-before:page}
+  .sec-head{break-after:avoid}
+  .block-title{break-after:avoid; margin-top:16px}
+  .q,.card,.chan,.acc,.kpi,.pend-group li,.ref{break-inside:avoid; box-shadow:none !important}
+  .q{padding:10px 12px 8px; margin-bottom:8px}
+  .tip{margin-bottom:6px}
+  .ctl{display:none !important}
+  .pv{display:block; white-space:pre-wrap; word-break:break-word; border-bottom:1px solid var(--line-2); padding:3px 0 5px; min-height:1.4em}
+  .pv.empty{color:#A0A6AE; font-style:italic}
+  .chip{padding:2px 9px; font-size:9pt}
+  .chips .chip:not(.on){display:none}
+  .chips.none .chips-none{display:inline; color:#A0A6AE; font-style:italic}
+  .q-foot{margin-top:4px}
+  .chan.off,.chan.nodata{display:none}
+  .ctl-cover{display:none !important}
+  .cover .pv{border:0; color:#F4F1EC; padding:4px 0}
+  .cover .pv.empty{color:rgba(244,241,236,.45)}
+  .client-box .pv{font-family:var(--serif); font-weight:600; font-size:40px; line-height:1.15}
+  .grid{gap:6px 12px}
+  .pend-group li{cursor:default}
+  .doc-end{margin-top:24px}
+  .acc,.chan{padding:8px 12px; margin-bottom:6px}
+  .acc-item{padding-top:2px}
+}
+</style>
+</head>
+<body>
+<script type="application/json" id="tln-state">{}</script>
+
+<!-- =================== CAPA =================== -->
+<section class="cover" id="capa">
+  <div class="brand">
+    <div class="mono">TLN</div>
+    <div class="brand-txt"><b>Consultoria TLN</b>Mídia · SEO · Divulgação</div>
+  </div>
+
+  <div class="cover-main">
+    <div class="eyebrow">Consultoria TLN</div>
+    <h1 class="consultora">Thais Lazzareschi Nese</h1>
+    <div class="rule"></div>
+    <p class="doc-title">Diagnóstico do Cliente</p>
+    <p class="doc-sub">Briefing de Mídia, SEO &amp; Divulgação</p>
+
+    <div class="client-box">
+      <span class="lbl">Preparado para</span>
+      <div class="fld"><textarea class="client-input ctl-cover" id="f-cliente" rows="1" placeholder="Nome do cliente"></textarea><div class="pv"></div></div>
+    </div>
+
+    <div class="cover-meta">
+      <label><span class="lbl">Contato / cargo</span><div class="fld"><input class="ctl-cover" id="f-contato" placeholder="Ex.: Ana Souza · Diretora"><div class="pv"></div></div></label>
+      <label><span class="lbl">Data da entrevista</span><div class="fld"><input class="ctl-cover" type="date" id="f-data"><div class="pv"></div></div></label>
+      <label><span class="lbl">Entrevistadora</span><div class="fld"><input class="ctl-cover" id="f-entrevistadora" placeholder="Thais Lazzareschi Nese"><div class="pv"></div></div></label>
+    </div>
+
+    <div class="cover-actions no-print">
+      <button class="btn gold" id="btn-personal" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"/></svg>
+        Baixar HTML personalizado para envio
+      </button>
+      <a class="btn ghost-dark" href="#s1">Iniciar diagnóstico ↓</a>
+    </div>
+  </div>
+
+  <div class="cover-foot">
+    <span>Documento confidencial</span>
+    <span id="cover-year">Consultoria TLN</span>
+  </div>
+</section>
+
+<!-- =================== BARRA =================== -->
+<div class="bar no-print">
+  <div class="bar-top">
+    <div class="bar-brand">
+      <div class="bar-mono">TLN</div>
+      <div class="bar-client"><span id="bar-client">Cliente</span><small>Diagnóstico · Consultoria TLN</small></div>
+    </div>
+    <div class="prog" title="Perguntas do roteiro respondidas">
+      <div class="prog-track"><div class="prog-fill" id="prog-fill"></div></div>
+      <span id="prog-txt">0 de 44</span>
+    </div>
+    <div class="bar-actions">
+      <a class="btn small" href="#s8" title="Checklist de pendências">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 11l3 3 8-8M20 12v7a2 2 0 01-2 2H6a2 2 0 01-2-2V5a2 2 0 012-2h9"/></svg><span class="lbl-long">Pendências</span>
+      </a>
+      <button class="btn small" id="btn-save" type="button" title="Baixar uma cópia deste HTML com as respostas preenchidas">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M5 3h11l3 3v13a2 2 0 01-2 2H7a2 2 0 01-2-2V3zM8 3v5h8M8 21v-7h8v7"/></svg><span class="lbl-long">Salvar cópia</span>
+      </button>
+      <button class="btn small primary" id="btn-pdf" type="button" title="Gerar PDF de todo o diagnóstico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7 3h7l5 5v11a2 2 0 01-2 2H7a2 2 0 01-2-2V5a2 2 0 012-2zM14 3v5h5M9 14h6M9 17h4"/></svg>Gerar PDF
+      </button>
+    </div>
+  </div>
+  <nav class="nav" id="nav"></nav>
+</div>
+
+<main>
+  <div class="banner" id="restored"><span id="restored-txt">Rascunho restaurado deste navegador.</span><button class="btn small" id="btn-new" type="button">Limpar respostas</button></div>
+  <details class="howto no-print">
+    <summary>Como usar este diagnóstico</summary>
+    <ol>
+      <li><b>Personalize:</b> digite o nome do cliente na capa e clique em <em>Baixar HTML personalizado para envio</em>. O arquivo gerado já abre com o nome do cliente na capa — é esse que você envia aos sócios.</li>
+      <li><b>Preencha:</b> cada pergunta tem resposta rápida (quando faz sentido, com a opção <em>Não se aplica</em>) e um campo de texto livre, sem limite de tamanho.</li>
+      <li><b>Salvamento:</b> tudo fica salvo automaticamente neste navegador. Para enviar as respostas a outra pessoa, use <em>Salvar cópia</em> — o HTML baixado leva as respostas junto.</li>
+      <li><b>PDF:</b> clique em <em>Gerar PDF</em> e escolha <em>Salvar como PDF</em> na janela de impressão (recomendado: desmarcar “Cabeçalhos e rodapés” e manter “Gráficos de fundo”).</li>
+      <li><b>Pendências:</b> o checklist no final lista automaticamente toda pergunta sem resposta ou marcada como “confirmar depois”.</li>
+    </ol>
+  </details>
+
+  <section class="section" id="s1">
+    <div class="sec-head"><div><div class="sec-num">01</div><h2>Roteiro de entrevista</h2><p>44 perguntas em blocos temáticos, para uma reunião de 45–60 minutos. Marque “confirmar depois” no que precisar de retorno do cliente.</p></div><div class="sec-stat"><b id="s1-stat">0/44</b>respondidas</div></div>
+    <div id="questions"></div>
+  </section>
+
+  <section class="section" id="s2">
+    <div class="sec-head"><div><div class="sec-num">02</div><h2>Metas e KPIs</h2><p>Traduza objetivos em números: situação atual × meta × prazo. A variação é calculada automaticamente.</p></div></div>
+    <div id="kpis"></div>
+    <div class="ref">
+      <h4>KPIs comuns por objetivo</h4>
+      <dl>
+        <dt>Awareness</dt><dd>Alcance, impressões, CPM, frequência, lift de marca</dd>
+        <dt>Tráfego</dt><dd>Cliques, CTR, CPC, sessões, taxa de rejeição</dd>
+        <dt>Leads</dt><dd>Nº de leads, CPL, taxa lead→venda, leads qualificados</dd>
+        <dt>Vendas</dt><dd>Conversões, CPA, ROAS, receita, ticket médio</dd>
+        <dt>App</dt><dd>Instalações, CPI, eventos in-app, retenção D7/D30</dd>
+        <dt>SEO</dt><dd>Posições orgânicas, tráfego orgânico, cliques e impressões no Search Console, páginas indexadas</dd>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" id="s3">
+    <div class="sec-head"><div><div class="sec-num">03</div><h2>Público e segmentação</h2><p>Uma ficha por persona. Os campos de segmentação viram a configuração dos conjuntos de anúncios em Meta, Google, TikTok e LinkedIn.</p></div></div>
+    <div id="personas"></div>
+  </section>
+
+  <section class="section" id="s4">
+    <div class="sec-head"><div><div class="sec-num">04</div><h2>Palavras-chave</h2><p>Termos que o público usaria no Google, YouTube, TikTok, marketplaces e LLMs. Volume e CPC: Planejador de Palavras-chave ou Semrush.</p></div></div>
+    <div class="summary" id="kw-summary"></div>
+    <div id="kws"></div>
+    <div class="card">
+      <div class="card-head"><h3>Palavras negativas</h3></div>
+      <div id="negs"></div>
+    </div>
+  </section>
+
+  <section class="section" id="s5">
+    <div class="sec-head"><div><div class="sec-num">05</div><h2>Canais e verba</h2><p>Informe a verba total e o percentual por canal. Os valores por canal e por mês são calculados.</p></div></div>
+    <div class="budget-top" id="budget-top"></div>
+    <div id="chans"></div>
+    <div class="total-row" id="chan-total"></div>
+  </section>
+
+  <section class="section" id="s6">
+    <div class="sec-head"><div><div class="sec-num">06</div><h2>Concorrentes</h2><p>Benchmark rápido. Confira anúncios ativos na Biblioteca de Anúncios da Meta e no Google Ads Transparency Center.</p></div></div>
+    <div id="concs"></div>
+  </section>
+
+  <section class="section" id="s7">
+    <div class="sec-head"><div><div class="sec-num">07</div><h2>Acessos e materiais</h2><p>O que pedir ao cliente depois da reunião para começar o trabalho.</p></div><div class="sec-stat"><b id="acc-stat">0/0</b>recebidos</div></div>
+    <div id="accs"></div>
+  </section>
+
+  <section class="section" id="s8">
+    <div class="sec-head"><div><div class="sec-num">08</div><h2>Checklist de pendências</h2><p>Gerado automaticamente: perguntas sem resposta, marcadas para confirmar depois e itens ainda não recebidos.</p></div></div>
+    <div class="summary" id="pend-summary"></div>
+    <div id="pend"></div>
+    <div class="card" style="margin-top:22px">
+      <div class="card-head"><h3>Observações finais e próximos passos</h3></div>
+      <div id="final-notes"></div>
+    </div>
+  </section>
+
+  <div class="doc-end"><span>Consultoria TLN · Thais Lazzareschi Nese</span><span id="end-client"></span></div>
+</main>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+/* Captura o HTML original (antes de renderizar) para gerar cópias personalizadas */
+var TEMPLATE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+
+/* ================= DADOS ================= */
+var NA = "Não se aplica";
+var QS = [
+ [1,"Empresa e negócio","Conte a história da empresa em 2 minutos: o que vende, há quanto tempo, tamanho do time.","Contexto geral e maturidade.","Alta"],
+ [2,"Empresa e negócio","Quais produtos/serviços são o foco desta campanha? Há um carro-chefe?","Define o que entra na mídia.","Alta"],
+ [3,"Empresa e negócio","Qual o ticket médio e a margem aproximada dos produtos foco?","Base para CPA/ROAS máximo aceitável.","Alta",{t:"one",o:["Até R$ 100","R$ 100 – 500","R$ 500 – 2.000","R$ 2.000 – 10.000","Acima de R$ 10.000","Não informado",NA]}],
+ [4,"Empresa e negócio","Onde vende hoje? (loja física, site próprio, marketplace, WhatsApp, representante)","Define destino do tráfego e conversão.","Alta",{t:"many",o:["Loja física","Site próprio / e-commerce","Marketplace","WhatsApp","Representantes / equipe comercial","Redes sociais","Outro"]}],
+ [5,"Empresa e negócio","Área de atuação geográfica (cidades, estados, Brasil, internacional)?","Segmentação geográfica.","Alta",{t:"one",o:["Local (cidade / raio)","Regional / estadual","Nacional","Internacional","Online, sem restrição geográfica"]}],
+ [6,"Empresa e negócio","Existe sazonalidade? Meses fortes e fracos?","Calendário e distribuição de verba.","Média",{t:"one",o:["Sim, forte","Sim, moderada","Não há sazonalidade relevante","Não sabe informar",NA]}],
+ [7,"Objetivos","Qual o principal objetivo da divulgação? (vendas, leads, awareness, lançamento, tráfego para loja, app)","Escolha de objetivo de campanha nas plataformas.","Alta",{t:"one",o:["Vendas","Leads","Awareness / reconhecimento de marca","Lançamento","Tráfego para loja física","Instalações de app","Tráfego orgânico / SEO","Outro"]}],
+ [8,"Objetivos","Existe objetivo secundário?","Evita misturar objetivos na mesma campanha.","Média",{t:"one",o:["Vendas","Leads","Awareness / reconhecimento de marca","Lançamento","Tráfego para loja física","Instalações de app","Tráfego orgânico / SEO","Outro","Não há objetivo secundário"]}],
+ [9,"Objetivos","O que seria um resultado de sucesso daqui a 3 meses? E 12 meses?","Expectativa real do cliente.","Alta"],
+ [10,"Metas","Há meta numérica? (nº de vendas, leads, faturamento, seguidores, CAC, ROAS)","Levar para a seção Metas e KPIs.","Alta",{t:"one",o:["Sim, definida","Parcialmente definida","Não — precisa ser construída"]}],
+ [11,"Metas","Quanto custa hoje adquirir um cliente (CAC)? Qual o máximo aceitável?","Teto de CPA.","Alta",{t:"one",o:["Conhecido","Estimado","Desconhecido",NA]}],
+ [12,"Metas","Qual a taxa de conversão de lead em venda do time comercial?","Converte meta de venda em meta de lead.","Média",{t:"one",o:["Conhecida","Estimada","Desconhecida",NA+" (sem time comercial)"]}],
+ [13,"Público-alvo","Quem é o cliente ideal? (idade, gênero, renda, profissão, região, momento de vida)","Segmentação demográfica.","Alta"],
+ [14,"Público-alvo","É B2C, B2B ou ambos? Se B2B: setor, porte da empresa e cargo de quem decide.","Define LinkedIn/Google vs. Meta/TikTok.","Alta",{t:"one",o:["B2C","B2B","Ambos (B2B e B2C)","B2B2C"]}],
+ [15,"Público-alvo","Quais dores/problemas o produto resolve para esse público?","Base para mensagens e palavras-chave.","Alta"],
+ [16,"Público-alvo","Quais os interesses, hábitos e conteúdos que esse público consome?","Segmentação por interesse.","Média"],
+ [17,"Público-alvo","Quais as principais objeções antes de comprar?","Criativos e FAQ da landing page.","Média"],
+ [18,"Público-alvo","Quem NÃO é cliente? Há público a excluir?","Exclusões e negativação.","Média",{t:"one",o:["Sim, há públicos a excluir","Não há exclusões","A definir"]}],
+ [19,"Público-alvo","Existe base de clientes (CRM, e-mails, telefones)? Quantos contatos?","Públicos semelhantes (lookalike) e remarketing.","Alta",{t:"one",o:["Sim, CRM estruturado","Sim, planilha / lista","Não possui base",NA]}],
+ [20,"Posicionamento","Por que o cliente escolhe vocês e não o concorrente? (diferencial)","Proposta de valor nos anúncios.","Alta"],
+ [21,"Posicionamento","Tom de voz da marca e o que NÃO pode ser dito/mostrado.","Guardrails criativos.","Média",{t:"one",o:["Formal","Próximo / conversacional","Técnico / especialista","Descontraído / bem-humorado","Premium / sofisticado","A definir"]}],
+ [22,"Posicionamento","Há ofertas, promoções ou gatilhos disponíveis? (frete, desconto, teste grátis)","Oferta dos anúncios.","Alta",{t:"many",o:["Frete grátis","Desconto","Teste grátis / amostra","Parcelamento","Brinde","Garantia estendida","Nenhuma no momento",NA]}],
+ [23,"Concorrência","Quem são os 3–5 principais concorrentes? Algum é referência?","Levar para a seção Concorrentes.","Alta"],
+ [24,"Concorrência","Os concorrentes anunciam? Onde?","Checar na Biblioteca de Anúncios da Meta e no Google Ads Transparency.","Média",{t:"many",o:["Google","Meta (Facebook/Instagram)","TikTok","LinkedIn","YouTube","Mídia offline","Não anunciam","Não sabe"]}],
+ [25,"Canais e mídia","Em quais canais querem divulgar? (Google, Meta, TikTok, LinkedIn, YouTube, influenciadores, OOH, rádio)","Levar para a seção Canais e Verba.","Alta",{t:"many",o:["Google","Meta (Facebook/Instagram)","TikTok","LinkedIn","YouTube","Influenciadores","SEO / conteúdo","E-mail / WhatsApp","OOH","Rádio / TV","A definir"]}],
+ [26,"Canais e mídia","Quais canais já usaram? O que funcionou e o que não funcionou?","Evita repetir erros.","Alta",{t:"one",o:["Já usaram mídia paga","Apenas orgânico","Nunca divulgaram",NA]}],
+ [27,"Canais e mídia","Têm redes sociais ativas? Quais, e com que frequência postam?","Orgânico apoia o pago.","Média",{t:"many",o:["Instagram","Facebook","TikTok","LinkedIn","YouTube","X (Twitter)","Pinterest","Não possui"]}],
+ [28,"Canais e mídia","Como as pessoas encontram a empresa hoje? (indicação, Google, Instagram…)","Canais de maior intenção.","Média",{t:"many",o:["Indicação / boca a boca","Google (orgânico)","Google (anúncios)","Instagram","Marketplaces","Eventos / feiras","Equipe comercial","Não sabe"]}],
+ [29,"Palavras-chave","Como o cliente descreve o produto com as próprias palavras? Que termos usa?","Linguagem real > jargão da empresa.","Alta"],
+ [30,"Palavras-chave","Quais perguntas os clientes mais fazem antes de comprar?","Long tail, conteúdo e GEO/AEO.","Alta"],
+ [31,"Palavras-chave","Algum termo a evitar? (marcas de terceiros, termos gratuitos, ‘vagas’, ‘grátis’)","Palavras negativas.","Média",{t:"one",o:["Sim, há termos a evitar","Não há","A definir"]}],
+ [32,"Orçamento","Qual o investimento mensal em mídia? E o total da campanha?","Levar para a seção Canais e Verba.","Alta",{t:"one",o:["Até R$ 2 mil/mês","R$ 2 – 5 mil/mês","R$ 5 – 15 mil/mês","R$ 15 – 50 mil/mês","Acima de R$ 50 mil/mês","A definir"]}],
+ [33,"Orçamento","A verba de mídia é separada da remuneração da consultoria/produção de criativos?","Evita confusão no fechamento.","Alta",{t:"one",o:["Sim, separada","Não, é um valor único","A definir",NA]}],
+ [34,"Orçamento","Quem paga as plataformas? (cartão do cliente ou repasse)","Operação e nota fiscal.","Média",{t:"one",o:["Cartão do cliente","Repasse via consultoria","A definir",NA]}],
+ [35,"Criativos","Têm materiais prontos? (fotos, vídeos, manual de marca, logos)","Define se há produção.","Média",{t:"many",o:["Fotos","Vídeos","Manual de marca","Logos em alta","Nenhum material pronto"]}],
+ [36,"Criativos","Quem produz e aprova criativos? Qual o prazo de aprovação?","Cronograma realista.","Média",{t:"one",o:["Equipe interna do cliente","Agência / produtora","Consultoria TLN","A definir",NA]}],
+ [37,"Dados e mensuração","Site tem GA4, Pixel da Meta, Tag Manager, Search Console?","Sem mensuração não há otimização.","Alta",{t:"many",o:["GA4","Pixel da Meta","Google Tag Manager","Search Console","Nenhum","Não sabe",NA+" (sem site)"]}],
+ [38,"Dados e mensuração","Como a venda/lead é registrada? (CRM, planilha, WhatsApp)","Fechar o ciclo de atribuição.","Alta",{t:"one",o:["CRM","Planilha","WhatsApp","Plataforma de e-commerce","Não registra","Outro"]}],
+ [39,"Dados e mensuração","Há histórico de campanhas com resultados? Podem compartilhar?","Benchmark interno.","Média",{t:"one",o:["Sim, com dados para compartilhar","Sim, mas sem dados organizados","Não há histórico",NA]}],
+ [40,"Landing / destino","Para onde o anúncio vai levar? A página está pronta e rápida no celular?","Conversão depende da página.","Alta",{t:"one",o:["Pronta e otimizada","Pronta, precisa de ajustes","Precisa ser criada",NA]}],
+ [41,"Cronograma","Data de início desejada? Há data fixa (lançamento, evento, Black Friday)?","Planejamento reverso.","Alta"],
+ [42,"Cronograma","Duração do projeto e frequência de relatórios desejada?","Escopo do projeto.","Média",{t:"one",o:["Relatório semanal","Relatório quinzenal","Relatório mensal","A definir"]}],
+ [43,"Gestão","Quem é o ponto focal e quem toma a decisão final?","Evita retrabalho.","Alta"],
+ [44,"Gestão","Algo mais que devo saber? Algum receio com a campanha?","Pergunta de fechamento.","Baixa"]
+];
+var TOTALQ = QS.length;
+
+var KPI_F = [
+ {k:"objetivo",l:"Objetivo",ph:"Ex.: Vendas online",w:2},{k:"kpi",l:"KPI",ph:"Ex.: Nº de pedidos/mês",w:2},
+ {k:"atual",l:"Valor atual",t:"num",ph:"120"},{k:"meta",l:"Meta",t:"num",ph:"200"},
+ {k:"_var",l:"Variação",t:"calc",f:function(r){var a=num(r.atual),m=num(r.meta);if(a===null||m===null||a===0)return "—";var v=m/a-1;return (v>=0?"+":"")+(v*100).toLocaleString("pt-BR",{maximumFractionDigits:1})+"%";}},
+ {k:"prazo",l:"Prazo",ph:"Ex.: Dez/2026"},
+ {k:"fonte",l:"Fonte do dado",ph:"Ex.: Plataforma de e-commerce",w:2},{k:"obs",l:"Observações",w:2}
+];
+var PERSONA_F = [
+ {g:"Perfil"},
+ {k:"nome",l:"Nome da persona",ph:"Ex.: Mariana, a mãe prática",w:2},{k:"idade",l:"Idade (faixa)",ph:"30–45"},{k:"genero",l:"Gênero",t:"sel",o:["Feminino","Masculino","Todos","Outro"]},
+ {k:"renda",l:"Renda / classe",ph:"B"},{k:"profissao",l:"Profissão / cargo",ph:"Analista, trabalha fora"},{k:"local",l:"Localização",ph:"Grande SP, raio 10 km da loja",w:2},
+ {k:"momento",l:"Momento de vida",ph:"Filhos pequenos, pouco tempo",w:4},
+ {g:"Comportamento"},
+ {k:"dores",l:"Dores / problemas",ph:"Falta de tempo para comparar opções",w:2},{k:"desejos",l:"Desejos / motivações",ph:"Praticidade e confiança",w:2},
+ {k:"objecoes",l:"Objeções",ph:"Preço e prazo de entrega",w:2},{k:"busca",l:"Onde busca informação",ph:"Google, Instagram, grupos de WhatsApp",w:2},
+ {k:"gatilhos",l:"Gatilhos de compra",ph:"Frete grátis, avaliações de outros clientes",w:2},{k:"jornada",l:"Jornada (tempo até comprar)",ph:"Pesquisa 1–2 semanas",w:2},
+ {g:"Segmentação — Meta (Facebook/Instagram)"},
+ {k:"m_int",l:"Interesses",ph:"Maternidade, organização doméstica",w:2},{k:"m_comp",l:"Comportamentos",ph:"Compradores engajados",w:2},
+ {k:"m_look",l:"Público personalizado / Lookalike",ph:"Base de clientes → Lookalike 1%",w:2},{k:"m_rmk",l:"Remarketing",ph:"Visitou o site em 30 dias, sem compra",w:2},
+ {g:"Segmentação — Google / YouTube"},
+ {k:"g_mkt",l:"Público no mercado (in-market)",ph:"Produtos infantis",w:2},{k:"g_af",l:"Afinidade / eventos de vida",ph:"Pais; mudança recente",w:2},
+ {k:"g_cm",l:"Customer Match / segmentos personalizados",ph:"Lista de e-mails; quem pesquisou termos-chave",w:4},
+ {g:"Segmentação — TikTok / LinkedIn / outros"},
+ {k:"tt",l:"TikTok (interesses e hashtags)",ph:"#rotinademae, #organização",w:2},{k:"li",l:"LinkedIn (setor, cargo, porte) — se B2B",ph:"Não se aplica, se B2C",w:2},
+ {k:"outros",l:"Outros canais / influenciadores",ph:"Micro-influenciadoras do nicho",w:4},
+ {g:"Exclusões"},
+ {k:"excluir",l:"Quem excluir",ph:"Clientes que compraram há menos de 30 dias",w:4}
+];
+var KW_F = [
+ {k:"termo",l:"Palavra-chave / termo",ph:"Ex.: comprar mochila infantil impermeável",w:2},
+ {k:"tipo",l:"Tipo",t:"sel",o:["Marca","Genérica","Concorrente","Long tail","Pergunta","Local"]},
+ {k:"intencao",l:"Intenção",t:"sel",o:["Informacional","Navegacional","Comercial","Transacional"]},
+ {k:"canal",l:"Canal de busca",t:"sel",o:["Google","YouTube","TikTok","Instagram","Pinterest","Marketplace","LLMs (ChatGPT etc.)"]},
+ {k:"persona",l:"Persona",ph:"Persona 1"},
+ {k:"volume",l:"Volume mensal (est.)",t:"num",ph:"1900"},{k:"cpc",l:"CPC est. (R$)",t:"num",ph:"1,80"},
+ {k:"conc",l:"Concorrência",t:"sel",o:["Baixa","Média","Alta"]},{k:"prio",l:"Prioridade",t:"sel",o:["Alta","Média","Baixa"]},
+ {k:"lp",l:"Landing page destino",ph:"/mochilas-infantis",w:2},{k:"obs",l:"Observações",w:4}
+];
+var CONC_F = [
+ {k:"nome",l:"Concorrente",ph:"Ex.: Loja X",w:2},{k:"site",l:"Site / @",ph:"lojax.com.br / @lojax",w:2},
+ {k:"canais",l:"Canais onde anuncia",ph:"Google Search, Instagram",w:2},{k:"oferta",l:"Oferta / preço",ph:"Frete grátis acima de R$ 199",w:2},
+ {k:"dif",l:"Diferencial",ph:"Entrega em 24h",w:2},{k:"fraco",l:"Ponto fraco",ph:"Pouca variedade",w:2},
+ {k:"kws",l:"Palavras-chave que usa",ph:"mochila escolar barata",w:2},{k:"obs",l:"Observações",w:2}
+];
+var CHANNELS = ["Google Search","Google Performance Max","YouTube","Meta (Facebook/Instagram)","TikTok","LinkedIn","Influenciadores","E-mail / WhatsApp / CRM","SEO / Conteúdo","Mídia offline (OOH, rádio)","Outro"];
+var CH_OBJ = ["Awareness","Tráfego","Engajamento","Leads","Conversão","Remarketing","App"];
+var ACC_DEFAULT = [
+ ["Acesso ao Google Ads (conta de anúncios)","Acessos"],["Acesso ao Meta Business Manager e conta de anúncios","Acessos"],["Acesso ao GA4","Acessos"],
+ ["Acesso ao Google Tag Manager","Acessos"],["Acesso ao Google Search Console","Acessos"],["Pixel da Meta / API de Conversões instalados","Mensuração"],
+ ["Eventos de conversão definidos (compra, lead etc.)","Mensuração"],["Acesso ao CRM ou relatório de vendas/leads","Mensuração"],
+ ["Base de clientes (lista para público personalizado)","Dados"],["Histórico de campanhas anteriores","Dados"],["Manual de marca, logos e fontes","Criativos"],
+ ["Banco de fotos e vídeos","Criativos"],["Landing page / URLs de destino","Destino"],["Contas TikTok / LinkedIn Ads (se aplicável)","Acessos"],
+ ["Forma de pagamento das plataformas definida","Financeiro"],["Aprovação do escopo e da proposta","Financeiro"]
+];
+var ACC_ST = ["Pendente","Solicitado","Recebido",NA];
+
+/* ================= ESTADO ================= */
+function blank(){
+  var s={v:1,savedAt:0,docId:"",meta:{cliente:"",contato:"",data:"",entrevistadora:"Thais Lazzareschi Nese"},q:{},kpis:[{}],personas:[{}],kws:[{}],negs:"",
+    canais:{total:"",meses:"",rows:{}},conc:[{}],acc:[],notes:""};
+  ACC_DEFAULT.forEach(function(a){s.acc.push({item:a[0],cat:a[1],status:"Pendente",resp:"",obs:"",fixed:true});});
+  return s;
+}
+function merge(base,src){
+  if(!src||typeof src!=="object")return base;
+  Object.keys(src).forEach(function(k){
+    if(src[k]&&typeof src[k]==="object"&&!Array.isArray(src[k])&&base[k]&&typeof base[k]==="object"&&!Array.isArray(base[k]))merge(base[k],src[k]);
+    else base[k]=src[k];
+  });
+  return base;
+}
+var embedded={};
+try{embedded=JSON.parse(document.getElementById("tln-state").textContent||"{}");}catch(e){}
+var S=merge(blank(),embedded);
+var storeKey=function(){return "tln-diag:"+(S.docId||"rascunho");};
+var restored=false;
+try{
+  var ls=localStorage.getItem(storeKey());
+  if(ls){var l=JSON.parse(ls); if(l&&(l.savedAt||0)>(S.savedAt||0)){S=merge(blank(),l);restored=true;}}
+}catch(e){}
+var params=new URLSearchParams(location.search);
+if(!S.meta.cliente&&params.get("cliente"))S.meta.cliente=params.get("cliente");
+function qa(id){if(!S.q[id])S.q[id]={sel:"",multi:[],txt:"",later:false};return S.q[id];}
+
+/* ================= UTIL ================= */
+function h(tag,attrs){
+  var e=document.createElement(tag);attrs=attrs||{};
+  Object.keys(attrs).forEach(function(k){var v=attrs[k];
+    if(k==="class")e.className=v;else if(k.slice(0,2)==="on")e.addEventListener(k.slice(2),v);
+    else if(v!==false&&v!=null)e.setAttribute(k,v===true?"":v);});
+  for(var i=2;i<arguments.length;i++){[].concat(arguments[i]).forEach(function(c){if(c==null||c===false)return;e.append(c.nodeType?c:document.createTextNode(c));});}
+  return e;
+}
+function $(id){return document.getElementById(id);}
+function num(v){if(v===""||v==null)return null;var t=String(v).trim().replace(/[R$\s%]/g,"");
+  if(t.indexOf(",")>=0)t=t.replace(/\./g,"").replace(",",".");else if(/^\d{1,3}(\.\d{3})+$/.test(t))t=t.replace(/\./g,"");
+  var n=parseFloat(t);return isNaN(n)?null:n;}
+var BRL=new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"});
+function grow(ta){if(!ta.isConnected)return;ta.style.height="auto";ta.style.height=(ta.scrollHeight+2)+"px";}
+function growAll(){document.querySelectorAll("textarea").forEach(grow);}
+function fmtDate(v){if(!v)return "";var p=v.split("-");return p.length===3?p[2]+"/"+p[1]+"/"+p[0]:v;}
+function slug(s){return (s||"").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^A-Za-z0-9]+/g,"_").replace(/^_|_$/g,"")||"Cliente";}
+var toastT;function toast(msg){var t=$("toast");t.textContent=msg;t.classList.add("show");clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove("show");},2600);}
+
+/* campos genéricos (com espelho para impressão) */
+function fText(get,set,o){o=o||{};
+  var ta=h("textarea",{class:"ctl",rows:o.rows||1,placeholder:o.ph||"","aria-label":o.aria||o.ph||""});ta.value=get()||"";
+  ta.addEventListener("input",function(){set(ta.value);grow(ta);changed();});
+  return h("div",{class:"fld"},ta,h("div",{class:"pv"}));
+}
+function fNum(get,set,o){o=o||{};
+  var i=h("input",{class:"ctl",type:"text",inputmode:"decimal",placeholder:o.ph||""});i.value=get()||"";
+  i.addEventListener("input",function(){set(i.value);changed();if(o.after)o.after();});
+  return h("div",{class:"fld"},i,h("div",{class:"pv"}));
+}
+function fSel(get,set,opts,o){o=o||{};
+  var s=h("select",{class:"ctl","aria-label":o.aria||""},h("option",{value:""},o.ph||"Selecione…"));
+  opts.forEach(function(x){s.append(h("option",{value:x},x));});
+  s.value=get()||"";var mark=function(){s.classList.toggle("na",s.value.indexOf(NA)===0);};mark();
+  s.addEventListener("change",function(){set(s.value);mark();changed();if(o.after)o.after();});
+  return h("div",{class:"fld"},s,h("div",{class:"pv"}));
+}
+function lab(label,el,w){return h("label",{class:"lf"+(w===2?" w2":w===4?" w4":"")},h("span",{class:"lbl"},label),el);}
+
+/* ================= CAPA ================= */
+function bindCover(){
+  [["f-cliente","cliente"],["f-contato","contato"],["f-data","data"],["f-entrevistadora","entrevistadora"]].forEach(function(p){
+    var el=$(p[0]);el.value=S.meta[p[1]]||"";
+    el.addEventListener("input",function(){S.meta[p[1]]=el.value;if(el.tagName==="TEXTAREA")grow(el);changed();updateClient();});
+  });
+  $("cover-year").textContent="Consultoria TLN · "+new Date().getFullYear();
+}
+function updateClient(){
+  var c=(S.meta.cliente||"").trim();
+  $("bar-client").textContent=c||"Cliente não informado";
+  $("end-client").textContent=c?"Diagnóstico · "+c:"";
+  document.title=c?"Diagnóstico — "+c+" · Consultoria TLN":"Diagnóstico do Cliente · Consultoria TLN";
+}
+
+/* ================= ROTEIRO ================= */
+var qCards={};
+function renderQuestions(){
+  var root=$("questions"),lastBlock="";
+  QS.forEach(function(q){
+    var id=q[0],a=qa(id);
+    if(q[1]!==lastBlock){lastBlock=q[1];root.append(h("div",{class:"block-title",id:"b-"+slug(q[1])},q[1],h("span",{class:"bt-cnt","data-block":q[1]})));}
+    var body=h("div",{class:"q-body"});
+    if(q[5]&&q[5].t==="one"){
+      body.append(fSel(function(){return a.sel;},function(v){a.sel=v;},q[5].o,{ph:"Resposta rápida — selecione…",aria:"Resposta rápida pergunta "+id}));
+    }else if(q[5]&&q[5].t==="many"){
+      var chips=h("div",{class:"chips"});
+      var sync=function(){chips.classList.toggle("none",!a.multi.length);};
+      q[5].o.forEach(function(o){
+        var b=h("button",{type:"button",class:"chip"+(a.multi.indexOf(o)>=0?" on":"")+(o.indexOf(NA)===0?" na-chip":""),"aria-pressed":a.multi.indexOf(o)>=0?"true":"false"},o);
+        b.addEventListener("click",function(){var i=a.multi.indexOf(o);if(i>=0)a.multi.splice(i,1);else a.multi.push(o);
+          b.classList.toggle("on",i<0);b.setAttribute("aria-pressed",i<0?"true":"false");sync();changed();});
+        chips.append(b);
+      });
+      chips.append(h("span",{class:"chips-none"},"—"));sync();
+      body.append(chips);
+    }
+    body.append(fText(function(){return a.txt;},function(v){a.txt=v;},{rows:2,ph:"Resposta do cliente, detalhes e observações (texto livre, sem limite)",aria:"Resposta pergunta "+id}));
+    var later=h("input",{type:"checkbox"});later.checked=!!a.later;
+    later.addEventListener("change",function(){a.later=later.checked;changed();});
+    var card=h("article",{class:"q",id:"q-"+id},
+      h("div",{class:"q-head"},h("span",{class:"qn"},String(id).padStart(2,"0")),h("h3",null,q[2]),h("span",{class:"prio "+q[4]},q[4])),
+      h("p",{class:"tip"},h("b",null,"Por que perguntar: "),q[3]),
+      body,
+      h("div",{class:"q-foot"},h("span",{class:"status"}),h("label",{class:"later-tg"},later,"Confirmar depois"))
+    );
+    qCards[id]=card;root.append(card);
+  });
+}
+function answered(id){var a=qa(id);return !!((a.txt||"").trim()||a.sel||(a.multi&&a.multi.length));}
+function updateProgress(){
+  var n=0,blocks={};
+  QS.forEach(function(q){var id=q[0],ok=answered(id),later=qa(id).later;
+    if(ok)n++;
+    var b=blocks[q[1]]||(blocks[q[1]]={t:0,d:0});b.t++;if(ok)b.d++;
+    var c=qCards[id];c.classList.toggle("done",ok&&!later);c.classList.toggle("later",later);
+    c.querySelector(".status").textContent=later?"Confirmar depois":ok?"Respondida":"Sem resposta";
+  });
+  document.querySelectorAll("[data-block]").forEach(function(e){var b=blocks[e.getAttribute("data-block")];e.textContent=b.d+" de "+b.t;});
+  $("prog-fill").style.width=(n/TOTALQ*100)+"%";$("prog-txt").textContent=n+" de "+TOTALQ;$("s1-stat").textContent=n+"/"+TOTALQ;
+  var nq=$("nav-s1");if(nq)nq.querySelector(".cnt").textContent=n+"/"+TOTALQ;
+}
+
+/* ================= REPETIDORES ================= */
+function repeater(rootId,key,fields,o){
+  var root=$(rootId);
+  function draw(){
+    root.innerHTML="";
+    S[key].forEach(function(row,idx){
+      var grid=h("div",{class:"grid"}),calcs=[];
+      fields.forEach(function(f){
+        if(f.g){grid.append(h("div",{class:"group-h"},f.g));return;}
+        var get=function(){return row[f.k];},set=function(v){row[f.k]=v;};
+        var upd=function(){calcs.forEach(function(c){c.el.textContent=c.f(row);});if(o.after)o.after();};
+        var el;
+        if(f.t==="num")el=fNum(get,set,{ph:f.ph,after:upd});
+        else if(f.t==="sel")el=fSel(get,set,f.o.concat(f.na===false?[]:[NA]),{after:upd});
+        else if(f.t==="calc"){var c=h("div",{class:"calc"});calcs.push({el:c,f:f.f});el=c;}
+        else{el=fText(get,set,{ph:f.ph?"Ex.: "+f.ph.replace(/^Ex\.: /,""):""});el.querySelector("textarea").addEventListener("input",upd);}
+        grid.append(lab(f.l,el,f.w));
+      });
+      calcs.forEach(function(c){c.el.textContent=c.f(row);});
+      var rm=h("button",{type:"button",class:"btn link small no-print",onclick:function(){
+        var filled=Object.keys(row).some(function(k){return row[k]&&String(row[k]).trim();});
+        if(filled&&!confirm("Remover este item?"))return;
+        S[key].splice(idx,1);if(!S[key].length)S[key].push({});draw();changed();if(o.after)o.after();}},"Remover");
+      root.append(h("div",{class:"card"},h("div",{class:"card-head"},h("h3",null,h("span",null,String(idx+1).padStart(2,"0")),o.title(row,idx)),rm),grid));
+    });
+    root.append(h("button",{type:"button",class:"btn add",onclick:function(){S[key].push({});draw();changed();
+      var cards=root.querySelectorAll(".card");var last=cards[cards.length-1];if(last){last.scrollIntoView({block:"center"});var t=last.querySelector(".ctl");if(t)t.focus();}}},"+ "+o.add));
+    requestAnimationFrame(growAll);
+  }
+  draw();
+}
+
+/* ================= PALAVRAS-CHAVE ================= */
+function kwSummary(){
+  var rows=S.kws.filter(function(r){return (r.termo||"").trim();});
+  var alta=rows.filter(function(r){return r.prio==="Alta";}).length;
+  var vol=rows.reduce(function(s,r){return s+(num(r.volume)||0);},0);
+  var el=$("kw-summary");el.innerHTML="";
+  [["Palavras-chave",rows.length],["Prioridade alta",alta],["Volume total (est.)",vol.toLocaleString("pt-BR")]].forEach(function(x){
+    el.append(h("div",{class:"kpi"},h("div",{class:"k"},x[0]),h("div",{class:"v"},String(x[1]))));});
+}
+
+/* ================= CANAIS E VERBA ================= */
+function renderBudget(){
+  var top=$("budget-top");top.innerHTML="";
+  top.append(lab("Verba total de mídia (R$)",fNum(function(){return S.canais.total;},function(v){S.canais.total=v;},{ph:"10.000",after:calcBudget})));
+  top.append(lab("Período (meses)",fNum(function(){return S.canais.meses;},function(v){S.canais.meses=v;},{ph:"3",after:calcBudget})));
+  top.append(lab("Verba média por mês",h("div",{class:"calc",id:"b-mes"},"—")));
+  var root=$("chans");root.innerHTML="";
+  CHANNELS.forEach(function(ch){
+    var r=S.canais.rows[ch]||(S.canais.rows[ch]={});
+    var vt=h("div",{class:"calc"},"—"),vm=h("div",{class:"calc"},"—");
+    var row=h("div",{class:"chan","data-ch":ch},
+      ch==="Outro"?h("div",{class:"lf"},h("span",{class:"lbl"},"Canal"),fText(function(){return r.nome;},function(v){r.nome=v;},{ph:"Outro canal…"})):h("div",{class:"chan-name"},ch),
+      lab("Usar?",fSel(function(){return r.usar;},function(v){r.usar=v;},["Sim","Não","Talvez",NA],{after:calcBudget})),
+      lab("Objetivo no canal",fSel(function(){return r.obj;},function(v){r.obj=v;},CH_OBJ.concat([NA]))),
+      lab("% da verba",fNum(function(){return r.pct;},function(v){r.pct=v;},{ph:"0",after:calcBudget})),
+      lab("Verba total",vt),lab("Verba / mês",vm),
+      h("div",{class:"extra"},
+        lab("Formato / tipo de campanha",fText(function(){return r.formato;},function(v){r.formato=v;},{ph:ch==="Google Search"?"Ex.: Pesquisa com palavras-chave":""})),
+        lab("KPI principal",fText(function(){return r.kpi;},function(v){r.kpi=v;},{ph:ch==="Google Search"?"Ex.: CPA / Conversões":""})),
+        lab("Observações",fText(function(){return r.obs;},function(v){r.obs=v;})))
+    );
+    row._vt=vt;row._vm=vm;row._r=r;root.append(row);
+  });
+  calcBudget();
+}
+function calcBudget(){
+  var tot=num(S.canais.total),m=num(S.canais.meses),sp=0,st=0;
+  $("b-mes").textContent=(tot!==null&&m)?BRL.format(tot/m):"—";
+  document.querySelectorAll(".chan").forEach(function(row){
+    var r=row._r,p=num(r.pct);
+    var hasData=["usar","obj","pct","formato","kpi","obs","nome"].some(function(k){return r[k]&&String(r[k]).trim();});
+    row.classList.toggle("off",r.usar==="Não"||r.usar===NA);row.classList.toggle("nodata",!hasData);
+    if(p!==null){sp+=p;}
+    if(p!==null&&tot!==null){var v=tot*p/100;st+=v;row._vt.textContent=BRL.format(v);row._vm.textContent=m?BRL.format(v/m):"—";}
+    else{row._vt.textContent="—";row._vm.textContent="—";}
+  });
+  var ok=Math.abs(sp-100)<0.01;
+  var el=$("chan-total");el.innerHTML="";
+  el.append(h("span",null,"Total alocado: ",h("b",null,sp.toLocaleString("pt-BR",{maximumFractionDigits:2})+"%")," ",
+    sp===0?"":h("span",{class:ok?"pct-ok":"pct-bad"},ok?"✔ soma 100%":"⚠ ajustar para 100%")),
+    h("span",null,"Verba distribuída: ",h("b",null,tot!==null?BRL.format(st):"—")," · por mês: ",h("b",null,(tot!==null&&m)?BRL.format(st/m):"—")));
+}
+
+/* ================= ACESSOS ================= */
+function renderAcc(){
+  var root=$("accs");root.innerHTML="";
+  S.acc.forEach(function(it,idx){
+    var row=h("div",{class:"acc st-"+(it.status||"Pendente").split(" ")[0]});
+    var paint=function(){row.className="acc st-"+((it.status||"Pendente").split(" ")[0]);accStat();};
+    row.append(
+      it.fixed?h("div",{class:"acc-item"},it.item,h("div",null,h("span",{class:"cat"},it.cat))):
+        h("div",{class:"acc-item"},lab("Item",fText(function(){return it.item;},function(v){it.item=v;},{ph:"Descreva o item…"}))),
+      lab("Status",fSel(function(){return it.status;},function(v){it.status=v||"Pendente";},ACC_ST,{ph:"Pendente",after:paint})),
+      lab("Responsável (cliente)",fText(function(){return it.resp;},function(v){it.resp=v;})),
+      lab("Observações",fText(function(){return it.obs;},function(v){it.obs=v;})),
+      it.fixed?h("span"):h("button",{type:"button",class:"btn link small no-print",style:"margin-top:22px",onclick:function(){S.acc.splice(idx,1);renderAcc();changed();}},"Remover")
+    );
+    root.append(row);
+  });
+  root.append(h("button",{type:"button",class:"btn add",onclick:function(){S.acc.push({item:"",cat:"Outro",status:"Pendente",resp:"",obs:""});renderAcc();changed();}},"+ Adicionar item"));
+  accStat();requestAnimationFrame(growAll);
+}
+function accStat(){
+  var rel=S.acc.filter(function(a){return a.status!==NA;});
+  var rec=rel.filter(function(a){return a.status==="Recebido";}).length;
+  $("acc-stat").textContent=rec+"/"+rel.length;
+}
+
+/* ================= PENDÊNCIAS ================= */
+function renderPend(){
+  var root=$("pend");root.innerHTML="";
+  var sem=0,lat=0,groups={},order=[];
+  QS.forEach(function(q){var id=q[0],a=qa(id),ok=answered(id);
+    if(ok&&!a.later)return;
+    if(a.later)lat++;else sem++;
+    if(!groups[q[1]]){groups[q[1]]=[];order.push(q[1]);}
+    groups[q[1]].push({id:id,q:q,later:a.later});
+  });
+  var ident=[];
+  if(!(S.meta.cliente||"").trim())ident.push(["Nome do cliente","f-cliente"]);
+  if(!(S.meta.contato||"").trim())ident.push(["Contato / cargo","f-contato"]);
+  if(!S.meta.data)ident.push(["Data da entrevista","f-data"]);
+  var accP=S.acc.filter(function(a){return a.status!=="Recebido"&&a.status!==NA&&(a.item||"").trim();});
+  var sum=$("pend-summary");sum.innerHTML="";
+  sum.append(h("div",{class:"kpi"},h("div",{class:"k"},"Perguntas respondidas"),h("div",{class:"v ok"},(TOTALQ-sem-lat)+" / "+TOTALQ)));
+  sum.append(h("div",{class:"kpi"},h("div",{class:"k"},"Sem resposta"),h("div",{class:"v"+(sem?" bad":"")},String(sem))));
+  sum.append(h("div",{class:"kpi"},h("div",{class:"k"},"Confirmar depois"),h("div",{class:"v"+(lat?" warn":"")},String(lat))));
+  if(!sem&&!lat&&!ident.length&&!accP.length){root.append(h("div",{class:"all-done"},"✔ Nenhuma pendência — diagnóstico completo."));return;}
+  function jump(elId){var el=$(elId);if(!el)return;el.scrollIntoView({behavior:"smooth",block:"center"});var t=el.matches&&el.matches("textarea,input,select")?el:el.querySelector("textarea");if(t)setTimeout(function(){t.focus({preventScroll:true});},350);}
+  if(ident.length){
+    var ul=h("ul");ident.forEach(function(x){ul.append(h("li",{onclick:function(){jump(x[1]);}},h("span",{class:"box"}),h("span",{class:"pend-txt"},x[0]),h("span",{class:"tag"},"Em branco")));});
+    root.append(h("div",{class:"pend-group"},h("h3",null,"Identificação",h("span",null,ident.length+" item(ns)")),ul));
+  }
+  order.forEach(function(b){
+    var ul=h("ul");
+    groups[b].forEach(function(x){
+      ul.append(h("li",{onclick:function(){jump("q-"+x.id);}},h("span",{class:"box"}),
+        h("span",{class:"pend-txt"},String(x.id).padStart(2,"0")+". "+x.q[2],h("small",null,"Prioridade "+x.q[4].toLowerCase())),
+        h("span",{class:"tag"+(x.later?" later":"")},x.later?"Confirmar depois":"Sem resposta")));
+    });
+    root.append(h("div",{class:"pend-group"},h("h3",null,b,h("span",null,groups[b].length+" pendente(s)")),ul));
+  });
+  if(accP.length){
+    var ul2=h("ul");accP.forEach(function(a){ul2.append(h("li",{onclick:function(){jump("s7");}},h("span",{class:"box"}),h("span",{class:"pend-txt"},a.item,h("small",null,a.cat)),h("span",{class:"tag"+(a.status==="Solicitado"?" later":"")},a.status||"Pendente")));});
+    root.append(h("div",{class:"pend-group"},h("h3",null,"Acessos e materiais",h("span",null,accP.length+" não recebido(s)")),ul2));
+  }
+}
+
+/* ================= NAV ================= */
+var SECS=[["s1","Roteiro"],["s2","Metas e KPIs"],["s3","Público"],["s4","Palavras-chave"],["s5","Canais e verba"],["s6","Concorrentes"],["s7","Acessos"],["s8","Pendências"]];
+function renderNav(){
+  var nav=$("nav");nav.append(h("a",{href:"#capa"},"Capa"));
+  SECS.forEach(function(s,i){nav.append(h("a",{href:"#"+s[0],id:"nav-"+s[0]},(i+1)+". "+s[1],s[0]==="s1"?h("span",{class:"cnt"}):null));});
+  if("IntersectionObserver" in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){nav.querySelectorAll("a").forEach(function(a){a.classList.toggle("cur",a.getAttribute("href")==="#"+e.target.id);});}});},{rootMargin:"-40% 0px -55% 0px"});
+    SECS.forEach(function(s){io.observe($(s[0]));});
+  }
+}
+
+/* ================= SALVAR / PDF ================= */
+var saveT;
+function changed(){
+  clearTimeout(saveT);saveT=setTimeout(persist,400);
+  updateProgress();renderPend();
+}
+function persist(){
+  S.savedAt=Date.now();
+  try{localStorage.setItem(storeKey(),JSON.stringify(S));}catch(e){}
+}
+function buildHTML(){
+  if(!S.docId)S.docId="d"+Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+  S.savedAt=Date.now();persist();
+  var json=JSON.stringify(S).replace(/</g,"\\u003c");
+  return TEMPLATE.replace(/(<script type="application\/json" id="tln-state">)[\s\S]*?(<\/script>)/,function(_,a,b){return a+json+b;});
+}
+function download(name,content){
+  var blob=new Blob([content],{type:"text/html;charset=utf-8"});
+  var url=URL.createObjectURL(blob);var a=h("a",{href:url,download:name});
+  document.body.append(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(url);},2000);
+}
+function syncPrint(){
+  document.querySelectorAll(".fld").forEach(function(f){
+    var c=f.querySelector(".ctl,.ctl-cover"),pv=f.querySelector(".pv");if(!c||!pv)return;
+    var v=c.tagName==="SELECT"?(c.value?c.options[c.selectedIndex].text:""):c.type==="date"?fmtDate(c.value):c.value;
+    pv.textContent=(v&&v.trim())?v:"—";pv.classList.toggle("empty",!(v&&v.trim()));
+  });
+}
+function doPrint(){
+  syncPrint();
+  var c=(S.meta.cliente||"").trim();
+  var old=document.title;document.title="Diagnostico_TLN_"+slug(c);
+  window.print();
+  setTimeout(function(){document.title=old;updateClient();},500);
+}
+window.addEventListener("beforeprint",syncPrint);
+window.addEventListener("pagehide",function(){clearTimeout(saveT);persist();});
+document.addEventListener("visibilitychange",function(){if(document.visibilityState==="hidden"){clearTimeout(saveT);persist();}});
+
+$("btn-personal").addEventListener("click",function(){
+  var c=(S.meta.cliente||"").trim();
+  if(!c){toast("Digite o nome do cliente na capa antes de gerar o arquivo.");$("f-cliente").focus();return;}
+  download("Diagnostico_TLN_"+slug(c)+".html",buildHTML());
+  toast("HTML personalizado para "+c+" baixado.");
+});
+$("btn-save").addEventListener("click",function(){
+  var c=(S.meta.cliente||"").trim();
+  var d=new Date(),stamp=d.getFullYear()+String(d.getMonth()+1).padStart(2,"0")+String(d.getDate()).padStart(2,"0");
+  download("Diagnostico_TLN_"+slug(c)+"_"+stamp+".html",buildHTML());
+  toast("Cópia com as respostas baixada.");
+});
+$("btn-pdf").addEventListener("click",doPrint);
+$("btn-new").addEventListener("click",function(){
+  if(!confirm("Apagar todas as respostas deste diagnóstico e começar do zero?"))return;
+  var keep={cliente:S.meta.cliente,docId:S.docId};
+  S=blank();S.meta.cliente=keep.cliente;S.docId=keep.docId;persist();
+  location.reload();
+});
+
+/* ================= INICIAR ================= */
+bindCover();updateClient();renderNav();renderQuestions();
+repeater("kpis","kpis",KPI_F,{title:function(r){return (r.objetivo||"").trim()||"Objetivo";},add:"Adicionar objetivo / KPI"});
+repeater("personas","personas",PERSONA_F,{title:function(r,i){return (r.nome||"").trim()||"Persona "+(i+1);},add:"Adicionar persona"});
+repeater("kws","kws",KW_F,{title:function(r){return (r.termo||"").trim()||"Palavra-chave";},add:"Adicionar palavra-chave",after:kwSummary});
+$("negs").append(fText(function(){return S.negs;},function(v){S.negs=v;},{rows:3,ph:"Uma por linha. Ex.:\ngrátis\nvagas\nusado\ncomo fazer\npdf"}));
+renderBudget();
+repeater("concs","conc",CONC_F,{title:function(r){return (r.nome||"").trim()||"Concorrente";},add:"Adicionar concorrente"});
+renderAcc();
+$("final-notes").append(fText(function(){return S.notes;},function(v){S.notes=v;},{rows:4,ph:"Resumo do diagnóstico, prioridades e próximos passos combinados com o cliente (sem limite de texto)"}));
+kwSummary();updateProgress();renderPend();
+if(restored&&!S.docId){$("restored").classList.add("show");}
+if(restored&&S.docId){$("restored-txt").textContent="Respostas mais recentes deste navegador restauradas.";$("restored").classList.add("show");}
+requestAnimationFrame(growAll);
+window.addEventListener("resize",function(){clearTimeout(window._gr);window._gr=setTimeout(growAll,150);});
+document.fonts&&document.fonts.ready.then(growAll);
+})();
+</script>
+</body>
+</html>
