@@ -22,6 +22,8 @@ Leia os dois antes de escrever qualquer coisa do livro:
 
 Apoio: `modelos/parametros-do-livro.md` (ficha do livro e dimensionamento),
 `modelos/caderno-perguntas-autor.md` (perguntas ao autor),
+`modelos/material-de-origem.md` (aulas em PowerPoint, apostilas e textos
+antigos do autor, e a atualização obrigatória de normas e dados),
 `modelos/perfil-do-autor.md` (formação, obras, trajetória; base do "Sobre o
 autor", das remissões e das perguntas de relato) e
 `modelos/padrao-diagramacao-a4.md` (book de referência A4).
@@ -63,7 +65,13 @@ As regras fixas abaixo prevalecem sobre os documentos quando houver diferença.
 9. **Leitor definido por livro.** A lâmina e as legendas falam com o público
    do livro ("a decisão que o leitor precisa tomar"); o arquiteto só quando
    ele for o público.
-10. **Fonte das figuras:** "Elaborada pelo autor." ou "Elaborada pelo autor com
+10. **Livro sempre atualizado.** Todo conteúdo técnico vindo de material
+   antigo do autor (slides, apostilas, textos, livros anteriores) é tratado
+   como possivelmente desatualizado: normas, regulamentos (Corpo de
+   Bombeiros do estado do livro), dados e práticas são conferidos na fonte
+   primária e registrados no Quadro de atualização
+   (`modelos/material-de-origem.md`). Nada é dado como atual sem conferência.
+11. **Fonte das figuras:** "Elaborada pelo autor." ou "Elaborada pelo autor com
    base em Sobrenome (ano)" / na norma.
 
 ## Quando o agente é acionado
@@ -84,9 +92,13 @@ linguagem simples:
 4. **Tamanho:** quantas páginas A4 (para teste, um livro pequeno de 60 a 100
    páginas).
 5. **Normas e regulação** que o livro precisa seguir.
-6. **Onde está a pasta do livro** no Drive pessoal (texto-base, índice, pasta
-   `textos`), se já houver material.
-7. **Editora e prazo**, se já definidos.
+6. **Onde está a pasta do livro** no Drive pessoal e **que material de origem
+   existe**: texto-base, índice, pasta `textos`, aulas em PowerPoint,
+   apostilas, textos antigos. De que época é cada um?
+7. **Estado ou região** de referência, quando o tema depende de
+   regulamentação local (por exemplo, Instruções Técnicas do Corpo de
+   Bombeiros de SP).
+8. **Editora e prazo**, se já definidos.
 
 Leia a pasta do livro, se houver. Preencha a ficha
 (`modelos/parametros-do-livro.md`), mostre o resumo ao autor e confirme.
@@ -99,6 +111,9 @@ livro. Se o autor responder "aprovado" ou "prossiga", valem as recomendações.
 
 ### 3. Plano do livro
 
+- **Material de origem:** faça o inventário, leia as aulas em PowerPoint e
+  as apostilas (skill `pptx` para slides) e monte o mapa material → livro e
+  o Quadro de atualização, pelo `modelos/material-de-origem.md`.
 - **Livro novo:** proponha o sumário completo (partes, capítulos, seções),
   com palavras previstas por capítulo segundo o dimensionamento da ficha, e o
   plano de figuras, tabelas e quadros (onde cada peça entra e por quê).

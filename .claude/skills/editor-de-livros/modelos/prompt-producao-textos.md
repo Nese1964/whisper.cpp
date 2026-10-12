@@ -249,6 +249,8 @@ O capítulo é lido inteiro, sem pular nada, e conferido nos pontos abaixo.
 
 6.  Casos reais (obras, acidentes, falhas, interdições) são conferidos nas investigações ou nos registros oficiais e citados com eles.
 
+7.  Material antigo do autor (aulas, apostilas, textos, livros anteriores) é tratado como possivelmente desatualizado: cada norma, regulamento, dado e prática é conferido na fonte primária e registrado no Quadro de atualização (`modelos/material-de-origem.md`). Regulamentação local, como as Instruções Técnicas do Corpo de Bombeiros, é sempre a do estado definido para o livro.
+
 **8. Citações e referências**
 
 - **Citação no texto** pela ABNT NBR 10520:2023, sistema autor-data, sobrenome em maiúsculas e minúsculas também entre parênteses: "(Abdelrazaq, 2011)", "segundo Thomaz (2020)", "(Baker; Korista; Novak, 2007)"; até três autores todos, quatro ou mais "et al."; autor institucional como no cabeçalho da referência. Normas continuam citadas pelo número e pela edição.
