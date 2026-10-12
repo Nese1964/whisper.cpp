@@ -12,16 +12,16 @@ Versão 1, 11 de outubro de 2026 · Versão 1.1 do agente, 12 de outubro de 2026
 
 Preencha os campos abaixo e mantenha o bloco no início do prompt. Os valores entram nas linhas 1 a 12 de todos os prompts de figura do livro.
 
-| **Campo**                     | **Valor para este livro**                                                                                         |
-|-------------------------------|-------------------------------------------------------------------------------------------------------------------|
-| Título do livro               | \[Nome do livro\]                                                                                                 |
-| Assunto em uma linha          | \[por exemplo: estruturas para arquitetos e engenheiros\]                                                         |
-| Público das figuras           | \[por exemplo: o arquiteto; o arquiteto e o engenheiro; o arquiteto e o dono do empreendimento\]                  |
-| Cor de destaque               | \[nome e código hexadecimal; uma só\]                                                                             |
-| Cor de função                 | \[nome, código e o que ela marca: cargas, portões de decisão, fluidos, zonas; uma só, ou "nenhuma"\]              |
-| Cor de superfícies e painéis  | \[cinza-claro \#E6E6E6 ou bege quente \#F4F1EE\]                                                                  |
+| **Campo** | **Valor para este livro** |
+|---|---|
+| Título do livro | \[Nome do livro\] |
+| Assunto em uma linha | \[por exemplo: estruturas para arquitetos e engenheiros\] |
+| Público das figuras | \[por exemplo: o arquiteto; o arquiteto e o engenheiro; o arquiteto e o dono do empreendimento\] |
+| Cor de destaque | \[nome e código hexadecimal; uma só\] |
+| Cor de função | \[nome, código e o que ela marca: cargas, portões de decisão, fluidos, zonas; uma só, ou "nenhuma"\] |
+| Cor de superfícies e painéis | \[cinza-claro \#E6E6E6 ou bege quente \#F4F1EE\] |
 | Linguagem visual predominante | \[diagrama técnico vetorial em sépia; infográfico técnico ilustrado colorido; ou os dois, escolhidos por figura\] |
-| Número de figuras             | \[N\]                                                                                                             |
+| Número de figuras | \[N\] |
 
 **1. Para que serve e como usar**
 
@@ -89,25 +89,25 @@ Para explicar espaços, instalações, equipamentos e sistemas por meio de cenas
 
 **3.3 Como escolher**
 
-| **O texto do livro descreve...**                                                                         | **Linguagem**                           |
-|----------------------------------------------------------------------------------------------------------|-----------------------------------------|
-| Uma sequência de etapas, um fluxo de decisão, uma rede de atividades, uma hierarquia, uma linha do tempo | Diagrama técnico vetorial, sépia        |
-| Um corte, um detalhe construtivo, um esquema estrutural, um diagrama de esforços, um gráfico de valores  | Diagrama técnico vetorial, sépia        |
-| Uma comparação lado a lado de alternativas esquemáticas                                                  | Diagrama técnico vetorial, sépia        |
-| Um ambiente, um pavimento, uma instalação, um sistema predial em funcionamento, um canteiro              | Infográfico técnico ilustrado, colorido |
-| Um edifício ou conjunto em perspectiva, com a relação entre partes (estrutura, espaço, forma)            | Infográfico técnico ilustrado, colorido |
-| Um equipamento ou sala técnica com os componentes nomeados                                               | Infográfico técnico ilustrado, colorido |
+| **O texto do livro descreve...** | **Linguagem** |
+|---|---|
+| Uma sequência de etapas, um fluxo de decisão, uma rede de atividades, uma hierarquia, uma linha do tempo | Diagrama técnico vetorial, sépia |
+| Um corte, um detalhe construtivo, um esquema estrutural, um diagrama de esforços, um gráfico de valores | Diagrama técnico vetorial, sépia |
+| Uma comparação lado a lado de alternativas esquemáticas | Diagrama técnico vetorial, sépia |
+| Um ambiente, um pavimento, uma instalação, um sistema predial em funcionamento, um canteiro | Infográfico técnico ilustrado, colorido |
+| Um edifício ou conjunto em perspectiva, com a relação entre partes (estrutura, espaço, forma) | Infográfico técnico ilustrado, colorido |
+| Um equipamento ou sala técnica com os componentes nomeados | Infográfico técnico ilustrado, colorido |
 
 **4. Paleta do livro**
 
 A paleta é definida no plano de revisão, com no máximo uma cor de destaque e uma cor de função, além do grafite \#2B2B2B para linhas e textos e do cinza-claro ou bege para superfícies e painéis. Nos diagramas em sépia, a escala da seção 3.1 substitui o cinza-claro nos fundos e as cores da paleta entram só como acento. Exemplos de paletas já usadas:
 
-| **Tipo de livro**                                             | **Paleta**                                                                                                                                                                                              |
-|---------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Livro de estruturas                                           | Grafite \#2B2B2B (linhas e textos), azul \#1F3864 (destaque), vermelho-tijolo \#B23A2E só para cargas, forças e setas de carga, cinza-claro \#E6E6E6 (superfícies e cortes), branco nos preenchimentos. |
-| Livro de instalações industriais                              | Grafite \#2B2B2B (linhas e textos), terracota \#9C4A2E como única cor de destaque, bege quente \#F4F1EE nos painéis de fundo internos, branco nos preenchimentos.                                       |
-| Livro de gestão de projetos (metodologia por fases e portões) | Grafite \#2B2B2B (linhas e textos), azul \#1F3864 (destaque), âmbar \#C98A1B reservado a portões, decisões e marcos, cinza-claro \#E6E6E6 para fundos de fase e painéis, branco nos preenchimentos.     |
-| Livro em trabalho                                             | \[Definida no plano de revisão, conforme a seção 0.\]                                                                                                                                                   |
+| **Tipo de livro** | **Paleta** |
+|---|---|
+| Livro de estruturas | Grafite \#2B2B2B (linhas e textos), azul \#1F3864 (destaque), vermelho-tijolo \#B23A2E só para cargas, forças e setas de carga, cinza-claro \#E6E6E6 (superfícies e cortes), branco nos preenchimentos. |
+| Livro de instalações industriais | Grafite \#2B2B2B (linhas e textos), terracota \#9C4A2E como única cor de destaque, bege quente \#F4F1EE nos painéis de fundo internos, branco nos preenchimentos. |
+| Livro de gestão de projetos (metodologia por fases e portões) | Grafite \#2B2B2B (linhas e textos), azul \#1F3864 (destaque), âmbar \#C98A1B reservado a portões, decisões e marcos, cinza-claro \#E6E6E6 para fundos de fase e painéis, branco nos preenchimentos. |
+| Livro em trabalho | \[Definida no plano de revisão, conforme a seção 0.\] |
 
 **5. O Documento 2 e os campos de cada entrada**
 
@@ -165,16 +165,16 @@ As linhas 1 a 12 são o padrão comum a todas as figuras do livro e mudam só no
 
 Exatamente oito linhas escritas para aquela figura, nunca por frase-modelo. Cada linha responde a uma pergunta:
 
-| **Linha** | **O que diz**                                                                                                                  |
-|-----------|--------------------------------------------------------------------------------------------------------------------------------|
-| 13        | Composição na página A4 retrato: como a página se divide (faixas, colunas, cena única, cena e detalhe) e onde fica cada parte. |
-| 14        | Elementos obrigatórios: o que precisa aparecer, com os nomes do texto do livro.                                                |
-| 15        | Rótulos exatos, entre aspas, no máximo seis a oito; o que vai para a legenda interna, se houver.                               |
-| 16        | Relações e setas: o que liga o quê, em que sentido, com que tipo de linha.                                                     |
-| 17        | Escala, dimensões de referência ou valores a representar, só os que estão no texto; onde faltar, "valor a confirmar".          |
-| 18        | Ponto de vista (planta, corte, elevação, isométrica, cavaleira) e nível de detalhe.                                            |
-| 19        | O que recebe a cor de destaque e o que recebe a cor de função; o resto fica em sépia ou dessaturado.                           |
-| 20        | O detalhe que o leitor precisa enxergar: o elemento que resolve a dúvida do leitor tratada no texto.                          |
+| **Linha** | **O que diz** |
+|---|---|
+| 13 | Composição na página A4 retrato: como a página se divide (faixas, colunas, cena única, cena e detalhe) e onde fica cada parte. |
+| 14 | Elementos obrigatórios: o que precisa aparecer, com os nomes do texto do livro. |
+| 15 | Rótulos exatos, entre aspas, no máximo seis a oito; o que vai para a legenda interna, se houver. |
+| 16 | Relações e setas: o que liga o quê, em que sentido, com que tipo de linha. |
+| 17 | Escala, dimensões de referência ou valores a representar, só os que estão no texto; onde faltar, "valor a confirmar". |
+| 18 | Ponto de vista (planta, corte, elevação, isométrica, cavaleira) e nível de detalhe. |
+| 19 | O que recebe a cor de destaque e o que recebe a cor de função; o resto fica em sépia ou dessaturado. |
+| 20 | O detalhe que o leitor precisa enxergar: o elemento que resolve a dúvida do leitor tratada no texto. |
 
 **7. Exemplo de entrada preenchida**
 
@@ -290,9 +290,9 @@ Exemplo genérico, de um livro sobre estruturas, para mostrar o formato. A legen
 
 Fotografias, reproduções históricas, capturas de tela e figuras de obras anteriores do autor não recebem prompt. Ficam no quadro final do Documento 2, com a situação de cada uma. Fotografia de obra real não é gerada por IA; imagem de banco com marca d'água é licenciada ou substituída antes da publicação.
 
-| **Figura** | **Título** | **Capítulo** | **Tipo**                                                               | **Situação**                         | **Fonte**                         |
-|------------|------------|--------------|------------------------------------------------------------------------|--------------------------------------|-----------------------------------|
-| \[N.M\]    | \[Título\] | \[N\]        | \[fotografia / reprodução / captura de tela / obra anterior do autor\] | \[mantida / licenciar / substituir\] | \[Fonte e nota de licenciamento\] |
+| **Figura** | **Título** | **Capítulo** | **Tipo** | **Situação** | **Fonte** |
+|---|---|---|---|---|---|
+| \[N.M\] | \[Título\] | \[N\] | \[fotografia / reprodução / captura de tela / obra anterior do autor\] | \[mantida / licenciar / substituir\] | \[Fonte e nota de licenciamento\] |
 
 **9. Conferência antes da entrega**
 
@@ -316,15 +316,15 @@ Antes de entregar cada figura, a IA que a gerou, ou a que a revisa, confere os p
 
 **10. Decisões a confirmar com o autor no início**
 
-| **Decisão**                                 | **Recomendação padrão**                                                                                                |
-|---------------------------------------------|------------------------------------------------------------------------------------------------------------------------|
-| Título do livro e assunto                   | Informados pelo autor; sem eles a IA não começa.                                                                       |
-| Paleta do livro                             | Uma cor de destaque e uma cor de função, no máximo; grafite nas linhas e textos.                                       |
-| Linguagem visual predominante               | Diagrama vetorial em sépia para os desenhos técnicos; infográfico colorido para as cenas; escolha por figura no plano. |
-| Formato de entrega                          | SVG editável mais PNG a 600 dpi, A4 retrato.                                                                           |
-| Legenda de 15 linhas na entrada e no livro  | Sim, a mesma.                                                                                                          |
-| Figuras existentes                          | Redesenhadas no padrão, com o arquivo de origem como referência.                                                       |
-| Fotografias e reproduções                   | Mantidas, sem prompt, no quadro final; marca d'água licenciada ou substituída.                                         |
+| **Decisão** | **Recomendação padrão** |
+|---|---|
+| Título do livro e assunto | Informados pelo autor; sem eles a IA não começa. |
+| Paleta do livro | Uma cor de destaque e uma cor de função, no máximo; grafite nas linhas e textos. |
+| Linguagem visual predominante | Diagrama vetorial em sépia para os desenhos técnicos; infográfico colorido para as cenas; escolha por figura no plano. |
+| Formato de entrega | SVG editável mais PNG a 600 dpi, A4 retrato. |
+| Legenda de 15 linhas na entrada e no livro | Sim, a mesma. |
+| Figuras existentes | Redesenhadas no padrão, com o arquivo de origem como referência. |
+| Fotografias e reproduções | Mantidas, sem prompt, no quadro final; marca d'água licenciada ou substituída. |
 
 Se o autor responder apenas "aprovado" ou "prossiga", valem as recomendações.
 

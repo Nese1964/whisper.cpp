@@ -12,20 +12,20 @@ Versão 1, 11 de outubro de 2026 · Versão 1.1 do agente, 12 de outubro de 2026
 
 Preencha os campos abaixo e mantenha o bloco no início do prompt. Tudo o que vem depois se refere a eles. Campo não preenchido é perguntado pela IA no primeiro turno.
 
-| **Campo**                      | **Valor para este livro**                                                                                                                           |
-|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
-| Título do livro                | \[Nome do livro\]                                                                                                                                   |
-| Autor e editora                | Arq. Flávio Nese. Editora \[nome da editora\]                                                                                                       |
-| Assunto em uma linha           | \[por exemplo: estruturas para arquitetos e engenheiros; projetos de indústrias farmacêuticas; metodologia FEL aplicada a projetos de arquitetura\] |
-| Público da lâmina              | \[por exemplo: ao arquiteto e ao engenheiro; ao projetista e ao arquiteto responsável pelo projeto; ao arquiteto e ao dono do empreendimento\]      |
-| Pergunta própria da lâmina     | \[por que \[o público do livro\] precisa considerar o tema deste livro neste ponto\]                                                              |
-| Normas e regulação do setor    | \[órgãos e famílias de normas que regem o tema: ABNT, Anvisa, ISO, NFPA, legislação, resoluções\]                                                   |
-| Forma de comunicar             | \[tom dialógico, "você" e "nós" (padrão do autor, seção 4); nível do leitor; ajustes próprios deste livro, se houver\] |
-| Limite de páginas e prazo      | \[número de páginas previsto; data de entrega à editora\]                                                                                           |
-| Pendências da versão anterior  | \[listar, ou "nenhuma registrada"\]                                                                                                                 |
-| Anexos previstos               | \[normas, guias e documentos de origem do tema, com autoria confirmada\]                                                                            |
-| Paleta das ilustrações         | \[ver o prompt de imagens; definida no plano de revisão\]                                                                                           |
-| Local de gravação das entregas | \[Google Drive pessoal do autor, pasta Agentes_Cloude/\<título\>/\<data\>\]                                                                                                        |
+| **Campo** | **Valor para este livro** |
+|---|---|
+| Título do livro | \[Nome do livro\] |
+| Autor e editora | Arq. Flávio Nese. Editora \[nome da editora\] |
+| Assunto em uma linha | \[por exemplo: estruturas para arquitetos e engenheiros; projetos de indústrias farmacêuticas; metodologia FEL aplicada a projetos de arquitetura\] |
+| Público da lâmina | \[por exemplo: ao arquiteto e ao engenheiro; ao projetista e ao arquiteto responsável pelo projeto; ao arquiteto e ao dono do empreendimento\] |
+| Pergunta própria da lâmina | \[por que \[o público do livro\] precisa considerar o tema deste livro neste ponto\] |
+| Normas e regulação do setor | \[órgãos e famílias de normas que regem o tema: ABNT, Anvisa, ISO, NFPA, legislação, resoluções\] |
+| Forma de comunicar | \[tom dialógico, "você" e "nós" (padrão do autor, seção 4); nível do leitor; ajustes próprios deste livro, se houver\] |
+| Limite de páginas e prazo | \[número de páginas previsto; data de entrega à editora\] |
+| Pendências da versão anterior | \[listar, ou "nenhuma registrada"\] |
+| Anexos previstos | \[normas, guias e documentos de origem do tema, com autoria confirmada\] |
+| Paleta das ilustrações | \[ver o prompt de imagens; definida no plano de revisão\] |
+| Local de gravação das entregas | \[Google Drive pessoal do autor, pasta Agentes_Cloude/\<título\>/\<data\>\] |
 
 **1. Para que serve e como usar**
 
@@ -53,29 +53,29 @@ A revisão completa de um livro de 500 a 800 páginas consome mais de uma sessã
 
 **2. Entregas**
 
-| **Entrega**                                            | **Conteúdo**                                                                                                                                                                                                                                             |
-|--------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Plano de revisão (documento de raciocínio)             | Diagnóstico com os números do livro, escopo, ordem de execução e decisões para o autor, cada uma com recomendação, mais o plano de figuras, tabelas e quadros. Entregue antes de qualquer edição.                                                        |
-| Documento 1, livro revisado (DOCX e PDF)               | Ordem editorial completa: pré-textuais, partes e capítulos, referências unificadas, glossário, apêndices, anexos, índice remissivo. Sumário e listas com paginação real. Figuras ainda não produzidas como página reservada com título, legenda e fonte. |
-| Documento 2, figuras e prompts (DOCX)                  | Uma entrada por desenho, no formato do prompt de imagens, com prompt de 20 linhas em português e em inglês. Quadro final com as fotografias e imagens mantidas.                                                                                          |
-| Pacote de trabalho                                     | Capítulos em arquivos mestres, relatórios de revisão por capítulo, lista de pendências \[VERIFICAR\], notas de coordenação e LEIA-ME com a situação.                                                                                                     |
-| Nota sobre o uso de inteligência artificial (opcional) | Uma página A4, impessoal e informativa: período de produção, onde a IA foi usada, origem das ilustrações, base nas referências, responsabilidade do autor.                                                                                               |
+| **Entrega** | **Conteúdo** |
+|---|---|
+| Plano de revisão (documento de raciocínio) | Diagnóstico com os números do livro, escopo, ordem de execução e decisões para o autor, cada uma com recomendação, mais o plano de figuras, tabelas e quadros. Entregue antes de qualquer edição. |
+| Documento 1, livro revisado (DOCX e PDF) | Ordem editorial completa: pré-textuais, partes e capítulos, referências unificadas, glossário, apêndices, anexos, índice remissivo. Sumário e listas com paginação real. Figuras ainda não produzidas como página reservada com título, legenda e fonte. |
+| Documento 2, figuras e prompts (DOCX) | Uma entrada por desenho, no formato do prompt de imagens, com prompt de 20 linhas em português e em inglês. Quadro final com as fotografias e imagens mantidas. |
+| Pacote de trabalho | Capítulos em arquivos mestres, relatórios de revisão por capítulo, lista de pendências \[VERIFICAR\], notas de coordenação e LEIA-ME com a situação. |
+| Nota sobre o uso de inteligência artificial (opcional) | Uma página A4, impessoal e informativa: período de produção, onde a IA foi usada, origem das ilustrações, base nas referências, responsabilidade do autor. |
 
 **3. Sequência de trabalho**
 
 Cada fase termina com o que foi feito, quantas páginas o livro tem e o que ficou pendente. Fases que mudam o texto só começam depois da aprovação do plano.
 
-| **Fase**                             | **O que se faz**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-|--------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| 0\. Diagnóstico                      | Unificação dos capítulos, se chegam em arquivos separados: um só documento, numeração contínua de capítulos e seções, estilos de título, terminologia e remissões uniformizados. Em seguida, contagem de páginas, capítulos, palavras, figuras por situação (a produzir, existente, a refazer, fotografia), tabelas, quadros, fórmulas, referências e duplicatas, marcações \[VERIFICAR\], lâminas fora do padrão, títulos com dois-pontos, citações no texto, e varredura de vícios de redação. |
-| 1\. Plano para aprovação             | Documento de raciocínio com escopo, ordem e decisões (seção 13), mais o plano de figuras, tabelas e quadros: leitura do livro inteiro, do início ao fim, marcando todos os pontos onde cabe uma peça (seções 9 e 10). Depois da aprovação do plano, nada entra.                                                                                                                                                                                                                                  |
-| 2\. Revisão por capítulo             | Leitura crítica completa de cada capítulo, em lotes, pelo protocolo da seção 12. Cada capítulo gera uma lista de edições conferida e um relatório.                                                                                                                                                                                                                                                                                                                                               |
-| 3\. Coordenação entre capítulos      | Títulos alterados, remissões, citação uniforme de normas, dados repetidos, figuras sobrepostas. Registro em notas de coordenação, lidas pelos lotes seguintes.                                                                                                                                                                                                                                                                                                                                   |
-| 4\. Figuras, tabelas e quadros novos | Execução do plano aprovado na fase 1: inserção, renumeração e atualização de todas as chamadas do livro.                                                                                                                                                                                                                                                                                                                                                                                         |
-| 5\. Pós-textuais                     | Referências unificadas, glossário, siglas, símbolos, apêndice de normas e índice remissivo, montados a partir do que cada revisão coletou.                                                                                                                                                                                                                                                                                                                                                       |
-| 6\. Pré-textuais                     | Folha de rosto, ficha, páginas reservadas, listas, sumário com seções, Sobre o autor e Apresentação em rascunho.                                                                                                                                                                                                                                                                                                                                                                                 |
-| 7\. Montagem                         | Livro em duas passadas para a paginação real; Documento 2.                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| 8\. Verificação final e entrega      | Nova varredura de vícios, revisão de sequência, contagem de figuras do livro contra o Documento 2, lista de conferência final (seção 12), PDF folheado, lista de pendências do autor, gravação no local indicado.                                                                                                                                                                                                                                                                                |
+| **Fase** | **O que se faz** |
+|---|---|
+| 0\. Diagnóstico | Unificação dos capítulos, se chegam em arquivos separados: um só documento, numeração contínua de capítulos e seções, estilos de título, terminologia e remissões uniformizados. Em seguida, contagem de páginas, capítulos, palavras, figuras por situação (a produzir, existente, a refazer, fotografia), tabelas, quadros, fórmulas, referências e duplicatas, marcações \[VERIFICAR\], lâminas fora do padrão, títulos com dois-pontos, citações no texto, e varredura de vícios de redação. |
+| 1\. Plano para aprovação | Documento de raciocínio com escopo, ordem e decisões (seção 13), mais o plano de figuras, tabelas e quadros: leitura do livro inteiro, do início ao fim, marcando todos os pontos onde cabe uma peça (seções 9 e 10). Depois da aprovação do plano, nada entra. |
+| 2\. Revisão por capítulo | Leitura crítica completa de cada capítulo, em lotes, pelo protocolo da seção 12. Cada capítulo gera uma lista de edições conferida e um relatório. |
+| 3\. Coordenação entre capítulos | Títulos alterados, remissões, citação uniforme de normas, dados repetidos, figuras sobrepostas. Registro em notas de coordenação, lidas pelos lotes seguintes. |
+| 4\. Figuras, tabelas e quadros novos | Execução do plano aprovado na fase 1: inserção, renumeração e atualização de todas as chamadas do livro. |
+| 5\. Pós-textuais | Referências unificadas, glossário, siglas, símbolos, apêndice de normas e índice remissivo, montados a partir do que cada revisão coletou. |
+| 6\. Pré-textuais | Folha de rosto, ficha, páginas reservadas, listas, sumário com seções, Sobre o autor e Apresentação em rascunho. |
+| 7\. Montagem | Livro em duas passadas para a paginação real; Documento 2. |
+| 8\. Verificação final e entrega | Nova varredura de vícios, revisão de sequência, contagem de figuras do livro contra o Documento 2, lista de conferência final (seção 12), PDF folheado, lista de pendências do autor, gravação no local indicado. |
 
 **4. Diretrizes de redação**
 
@@ -347,11 +347,11 @@ O livro traz lista de tabelas e lista de quadros nos pré-textuais, separadas da
 
 Ordem baseada na ABNT NBR 6029:2023 e na prática da editora. Elemento sem conteúdo fica como página reservada com a marca do que falta, para não alterar a paginação depois.
 
-| **Grupo**    | **Elementos**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-|--------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Grupo** | **Elementos** |
+|---|---|
 | Pré-textuais | Folha de rosto (título, autor, editora, local e ano); ficha catalográfica (página reservada, a cargo da editora, com dados sugeridos); dedicatória e agradecimentos (texto do autor); lista de figuras; lista de tabelas; lista de quadros, todas com título e página; lista de siglas e abreviaturas; lista de símbolos; sumário com partes, capítulos e seções; Sobre o autor (rascunho para revisão); prefácio (reservado para convidado); Apresentação (rascunho em voz do autor: propósito, leitor, organização, modo de usar); nota do autor e nota sobre o uso de IA, se o autor quiser. |
-| Textuais     | Partes com página de abertura e lista dos capítulos; capítulos no padrão da seção 6.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Pós-textuais | Referências (capítulo único); glossário com remissão ao capítulo e à figura; apêndices (material elaborado pelo autor, entre eles o apêndice de normas técnicas citadas: número, título, edição, capítulos); anexos (material de terceiros: normas, guias e documentos de origem do tema tratado, com autoria confirmada em fonte verificável e registrada nas Referências); índice remissivo por seção (vale em qualquer paginação; a editora converte para páginas se preferir).                                                                                                              |
+| Textuais | Partes com página de abertura e lista dos capítulos; capítulos no padrão da seção 6. |
+| Pós-textuais | Referências (capítulo único); glossário com remissão ao capítulo e à figura; apêndices (material elaborado pelo autor, entre eles o apêndice de normas técnicas citadas: número, título, edição, capítulos); anexos (material de terceiros: normas, guias e documentos de origem do tema tratado, com autoria confirmada em fonte verificável e registrada nas Referências); índice remissivo por seção (vale em qualquer paginação; a editora converte para páginas se preferir). |
 
 Sumário e listas sem caixa alta, com pontilhado até o número e recuo nas entradas longas; números de página tirados do PDF real.
 
@@ -410,21 +410,21 @@ Este protocolo não depende de ferramenta ou de sistema específico. Cada IA o e
 
 **13. Decisões a confirmar com o autor no início**
 
-| **Decisão**                           | **Recomendação padrão**                                                                                                               |
-|---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
-| Título do livro                       | Informado pelo autor; sem ele a IA não começa (seção 1).                                                                              |
-| Título da lâmina e público principal  | Conforme o livro; definir antes da revisão.                                                                                           |
-| Limite de páginas e prazo de entrega  | Informados pelo autor; o plano mostra a estimativa.                                                                                   |
-| Legenda de 15 linhas também no livro  | Sim, a mesma do Documento 2.                                                                                                          |
-| Paleta das ilustrações                | Definida no plano, segundo o prompt de imagens.                                                                                       |
-| Índice remissivo                      | Por seção.                                                                                                                            |
-| Títulos de partes inferidos           | Mantidos, salvo indicação do autor.                                                                                                   |
-| Local de gravação                     | Drive pessoal do autor, Agentes_Cloude/\<título\>/\<data\>.                                                                                  |
-| Fotografias de banco com marca d'água | Ficam marcadas para licenciar ou substituir.                                                                                          |
-| Figuras de obras anteriores do autor  | Mantidas, sem prompt, com a origem indicada.                                                                                          |
-| Nota sobre o uso de IA                | Página informativa e impessoal, se o autor quiser.                                                                                    |
-| Plano de figuras, tabelas e quadros   | Fechado na fase 1, após leitura integral do livro e aprovação do autor; depois dele nada entra.                                       |
-| Anexos                                | Material de terceiros indicado pelo autor (normas, guias, documentos de origem do tema), com autoria confirmada em fonte verificável. |
+| **Decisão** | **Recomendação padrão** |
+|---|---|
+| Título do livro | Informado pelo autor; sem ele a IA não começa (seção 1). |
+| Título da lâmina e público principal | Conforme o livro; definir antes da revisão. |
+| Limite de páginas e prazo de entrega | Informados pelo autor; o plano mostra a estimativa. |
+| Legenda de 15 linhas também no livro | Sim, a mesma do Documento 2. |
+| Paleta das ilustrações | Definida no plano, segundo o prompt de imagens. |
+| Índice remissivo | Por seção. |
+| Títulos de partes inferidos | Mantidos, salvo indicação do autor. |
+| Local de gravação | Drive pessoal do autor, Agentes_Cloude/\<título\>/\<data\>. |
+| Fotografias de banco com marca d'água | Ficam marcadas para licenciar ou substituir. |
+| Figuras de obras anteriores do autor | Mantidas, sem prompt, com a origem indicada. |
+| Nota sobre o uso de IA | Página informativa e impessoal, se o autor quiser. |
+| Plano de figuras, tabelas e quadros | Fechado na fase 1, após leitura integral do livro e aprovação do autor; depois dele nada entra. |
+| Anexos | Material de terceiros indicado pelo autor (normas, guias, documentos de origem do tema), com autoria confirmada em fonte verificável. |
 
 Se o autor responder apenas "aprovado" ou "prossiga", valem as recomendações.
 
@@ -432,20 +432,20 @@ Se o autor responder apenas "aprovado" ou "prossiga", valem as recomendações.
 
 Registro acumulado dos livros já revisados com este método. Novas lições entram aqui a cada livro.
 
-| **O que aconteceu**                                                                                 | **Regra**                                                                                   |
-|-----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
-| O espaço reservado às figuras mudou duas vezes num mesmo livro e a paginação foi refeita três vezes | Página inteira de figura fixada antes da revisão.                                           |
-| Rodízio de sinônimos e substituição global criaram tiques e frases quebradas                        | Só edição manual registrada.                                                                |
-| Leitura parcial deixou passar erros de norma e de números                                           | Leitura integral e conferência na fonte desde a primeira rodada.                            |
-| Versões anteriores traziam dados sem fonte ou inventados                                            | Desconfiar de todo número sem fonte; retirar o que não se confirma.                         |
-| Fotografias de banco com marca d'água e fotos que não correspondiam ao título                       | Conferir cada fotografia contra o título; licenciar ou substituir.                          |
-| Legendas curtas e figuras sem citação no texto                                                      | Legenda de 15 linhas e revisão de sequência.                                               |
-| Citações quase ausentes e referências só no fim dos capítulos                                       | Citação autor-data e capítulo único de referências.                                         |
-| A mesma norma citada de modos diferentes entre capítulos                                            | Forma única de citação definida e aplicada no livro todo.                                   |
-| Títulos de capítulo com dois-pontos e anglicismos ("softwares")                                     | Títulos simples e termo em português.                                                       |
-| Limites de uso interromperam lotes no meio                                                          | Lotes menores, pacote e situação salvos a cada lote; trabalho parcial descartado e refeito. |
-| Prompts de figura por frase-modelo ficaram repetitivos                                              | Oito linhas de conteúdo escritas para cada figura.                                          |
-| \[Nova lição\]                                                                                      | \[Regra\]                                                                                   |
+| **O que aconteceu** | **Regra** |
+|---|---|
+| O espaço reservado às figuras mudou duas vezes num mesmo livro e a paginação foi refeita três vezes | Página inteira de figura fixada antes da revisão. |
+| Rodízio de sinônimos e substituição global criaram tiques e frases quebradas | Só edição manual registrada. |
+| Leitura parcial deixou passar erros de norma e de números | Leitura integral e conferência na fonte desde a primeira rodada. |
+| Versões anteriores traziam dados sem fonte ou inventados | Desconfiar de todo número sem fonte; retirar o que não se confirma. |
+| Fotografias de banco com marca d'água e fotos que não correspondiam ao título | Conferir cada fotografia contra o título; licenciar ou substituir. |
+| Legendas curtas e figuras sem citação no texto | Legenda de 15 linhas e revisão de sequência. |
+| Citações quase ausentes e referências só no fim dos capítulos | Citação autor-data e capítulo único de referências. |
+| A mesma norma citada de modos diferentes entre capítulos | Forma única de citação definida e aplicada no livro todo. |
+| Títulos de capítulo com dois-pontos e anglicismos ("softwares") | Títulos simples e termo em português. |
+| Limites de uso interromperam lotes no meio | Lotes menores, pacote e situação salvos a cada lote; trabalho parcial descartado e refeito. |
+| Prompts de figura por frase-modelo ficaram repetitivos | Oito linhas de conteúdo escritas para cada figura. |
+| \[Nova lição\] | \[Regra\] |
 
 **15. Modelo de prompt para colar no chat**
 
