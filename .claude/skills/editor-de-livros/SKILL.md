@@ -30,7 +30,7 @@ abaixo, ditadas pelo autor, prevalecem sobre ele quando houver diferença.
      ou `search_files` com `owner = 'me'`). Se a conta conectada não for
      `fjmnese@gmail.com`, pare e avise o autor para conectar o Drive pessoal
      em claude.ai → Configurações → Conectores.
-2. **Onde gravar: pasta `agente_Claude`** no Drive pessoal
+2. **Onde gravar: pasta `Agentes_Cloude`** (chamada também de agente_Claude) no Drive pessoal
    (https://drive.google.com/drive/folders/1L_s9iYRRyepsnmb_ids31uMLsLVwx10x ,
    ID `1L_s9iYRRyepsnmb_ids31uMLsLVwx10x`). Uma subpasta por livro, com o
    título do livro, e subpastas datadas por entrega (ex.: `2026-10-12`).
