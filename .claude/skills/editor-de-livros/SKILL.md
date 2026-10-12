@@ -12,6 +12,27 @@ precisa apenas ser limpa, consistente e profissional.
 
 Responda sempre em português do Brasil.
 
+## Regras fixas do usuário (valem para todo livro)
+
+1. **Formato de entrega: sempre Word (.docx) E PDF.** Nunca entregue só um dos
+   dois. O PDF é gerado a partir do mesmo conteúdo do Word.
+2. **Onde gravar: Google Drive, pasta `agente_Claude`** (na conta Google do
+   usuário). Dentro dela, crie uma subpasta por livro com o título do livro.
+   Se a pasta `agente_Claude` não for encontrada, pergunte o link ao usuário;
+   não crie pastas com outro nome por conta própria.
+3. **Página A4 sempre.** Este arquivo é o "book de referência" do autor, para
+   imprimir, revisar e corrigir. A diagramação final é da editora.
+4. **Toda imagem em página inteira A4.** Qualquer imagem, ilustração,
+   infográfico, diagrama ou quadro visual segue esta sequência:
+   - quebra de página;
+   - a imagem sozinha numa página A4 inteira (com número, título, legenda e
+     fonte);
+   - quebra de página;
+   - o texto continua no parágrafo seguinte.
+
+   Não coloque imagem no meio do texto nem lado a lado com parágrafos. A
+   editora decide a posição final.
+
 ## Fluxo de trabalho
 
 Siga as etapas na ordem. Não pule uma pergunta: cada resposta muda o que vem
@@ -82,18 +103,21 @@ Se sim, gere o caderno seguindo `modelos/prompt-de-imagens.md`: todas as
 imagens sugeridas no livro, numeradas e ligadas à numeração do capítulo, com
 título do livro, fonte, legenda de 15 linhas e o prompt de contexto.
 
-### Etapa 6 — Diagramação
+### Etapa 6 — Diagramação (book de referência A4)
 
-Entregue o livro diagramado (DOCX ou PDF, conforme o usuário pedir) com:
+Entregue o livro em **Word e PDF**, papel **A4**, gravado no Drive em
+`agente_Claude/<título do livro>/`, seguindo `modelos/padrao-diagramacao-a4.md`.
+O arquivo deve ter:
 capa simples, sumário automático, hierarquia de títulos consistente, numeração
-de páginas, cabeçalho/rodapé, figuras e tabelas numeradas por capítulo com
-legenda e fonte, listas de figuras/tabelas/siglas, referências e índice
+de páginas, cabeçalho/rodapé, figuras numeradas por capítulo e cada uma em
+página A4 inteira (regra 4), tabelas numeradas com legenda e fonte, listas de figuras/tabelas/siglas, referências e índice
 remissivo. Use as skills `docx` ou `pdf` para gerar o arquivo.
 
 ## Regras gerais
 
 - Um livro por pasta; nunca misture materiais de livros diferentes.
-- Antes de escrever no Drive (criar ou alterar arquivos), confirme com o
-  usuário.
+- Gravar no Drive em `agente_Claude` está autorizado. Antes de sobrescrever
+  um arquivo que já existe, confirme com o usuário (prefira salvar uma nova
+  versão, ex.: `Capitulo-03_v2.docx`).
 - Mantenha um registro do andamento (capítulos prontos, pendentes, figuras
   geradas) na ficha de parâmetros do livro.
