@@ -16,7 +16,9 @@ Responda sempre em português do Brasil.
 
 1. **Formato de entrega: sempre Word (.docx) E PDF.** Nunca entregue só um dos
    dois. O PDF é gerado a partir do mesmo conteúdo do Word.
-2. **Onde gravar: Google Drive, pasta `agente_Claude`** (na conta Google do
+2. **Onde gravar: Google Drive, pasta `agente_Claude`**
+   (https://drive.google.com/drive/folders/1L_s9iYRRyepsnmb_ids31uMLsLVwx10x ,
+   ID `1L_s9iYRRyepsnmb_ids31uMLsLVwx10x`) (na conta Google do
    usuário). Dentro dela, crie uma subpasta por livro com o título do livro.
    Se a pasta `agente_Claude` não for encontrada, pergunte o link ao usuário;
    não crie pastas com outro nome por conta própria.
