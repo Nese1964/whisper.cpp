@@ -115,6 +115,24 @@ O livro fala com o leitor. O tom dialógico, segunda pessoa ("você") combinada 
 
 7.  **Na revisão de livro existente**, texto impessoal é convertido para o tom dialógico só onde a frase ganha clareza; a conversão entra no plano de revisão e conta como edição registrada.
 
+**A experiência do autor no livro**
+
+O autor é arquiteto, especialista em gerenciamento de projetos, com cerca de 40 anos de prática na construção civil. Os livros dele trazem essa experiência: estudos de caso e passagens vividas em obra e na vida profissional. Essa é a marca pessoal do livro e não pode ser imitada pela IA.
+
+1.  **Nunca inventar experiência do autor.** Nenhum relato, obra, cliente, data, número ou fala atribuído ao autor é escrito sem que ele tenha contado. A IA prepara o lugar e faz a pergunta; o autor responde; só então o relato é redigido.
+
+2.  **Onde cabe um relato.** Ao redigir, a IA marca os pontos em que uma passagem da prática do autor reforça o texto: depois de um requisito de norma que costuma ser descumprido em obra, num erro frequente, numa decisão difícil de projeto ou de gestão, num conflito entre projeto e execução, na abertura ou no fecho de um capítulo. De um a três pontos por capítulo, sem forçar.
+
+3.  **Marcação no texto.** Cada ponto recebe, no lugar exato, a marca `[RELATO DO AUTOR R-N.M: pergunta curta]`, por exemplo `[RELATO DO AUTOR R-3.2: você já viu uma rota de fuga obstruída por material de obra? O que aconteceu e como foi resolvido?]`. O texto em volta é escrito de modo a funcionar com ou sem o relato.
+
+4.  **A produção não para.** As perguntas não interrompem a redação: o livro é escrito e montado inteiro, e todas as perguntas vão para o Caderno de perguntas ao autor (`modelos/caderno-perguntas-autor.md`), entregue no fim, em Word e PDF. O autor pode estar desconectado; muitas vezes ele só decide onde entra um caso depois de ver o livro montado.
+
+5.  **Estudos de caso de terceiros.** Casos públicos (acidentes, incêndios, interdições, obras conhecidas) podem ser redigidos pela IA, só com fonte verificável (investigação, laudo, registro oficial, publicação técnica), citados pela seção 7. Caso do autor e caso de terceiros nunca se misturam.
+
+6.  **Forma do relato.** O relato do autor vem em primeira pessoa do singular ("eu"), a única exceção ao tom dialógico, em quadro destacado "Da prática do autor" ou, quando for longo e estruturado, como "Estudo de caso N.M, Título" (situação, problema, decisão, resultado, lição). O texto em volta liga o relato ao conteúdo com "você" e "nós".
+
+7.  **Depois das respostas.** O relato é redigido a partir das palavras do autor, com a voz dele preservada, apenas limpo dos vícios da seção 4, e volta para o autor aprovar. Pergunta sem resposta tem a marca retirada sem deixar lacuna no texto. Nomes de pessoas e empresas só com autorização do autor; na dúvida, anonimizar.
+
 **Vocabulário a evitar (vícios de IA)**
 
 - **Palavras-curinga:** crucial, fundamental, robusto, abrangente, essencial, significativo, inovador, transformador, revolucionário, sem precedentes.
@@ -384,6 +402,7 @@ Este protocolo não depende de ferramenta ou de sistema específico. Cada IA o e
 - Contagem de figuras do livro igual à do Documento 2.
 
 - Nenhuma marcação \[VERIFICAR\] sem registro na lista de pendências do autor.
+- Nenhuma marca \[RELATO DO AUTOR\] fora do Caderno de perguntas ao autor; nenhum relato do autor sem resposta e aprovação dele.
 
 - Varredura de vícios zerada; tabelas e quadros no formato da seção 10; paleta uniforme em todas as figuras.
 

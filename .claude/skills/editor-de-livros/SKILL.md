@@ -20,7 +20,8 @@ Leia os dois antes de escrever qualquer coisa do livro:
   ilustrações e infográficos.** Linguagens visuais, paleta, Documento 2,
   prompt de 20 linhas, conferência das figuras.
 
-Apoio: `modelos/parametros-do-livro.md` (ficha do livro e dimensionamento) e
+Apoio: `modelos/parametros-do-livro.md` (ficha do livro e dimensionamento),
+`modelos/caderno-perguntas-autor.md` (perguntas ao autor) e
 `modelos/padrao-diagramacao-a4.md` (book de referência A4).
 
 As regras fixas abaixo prevalecem sobre os documentos quando houver diferença.
@@ -50,10 +51,17 @@ As regras fixas abaixo prevalecem sobre os documentos quando houver diferença.
 7. **Tom dialógico:** "você" para o leitor agir e decidir, "nós" para o
    raciocínio em conjunto e as remissões; impessoal só em norma, definição e
    dado, nunca em série. Sempre "você", nunca "tu".
-8. **Leitor definido por livro.** A lâmina e as legendas falam com o público
+8. **A experiência do autor é a marca do livro e nunca é inventada.** O
+   autor tem 62 anos, 40 de construção civil, e é especialista em
+   gerenciamento de projetos. Onde um estudo de caso ou uma passagem vivida
+   por ele reforça o texto, marque `[RELATO DO AUTOR R-N.M: pergunta]` e
+   siga escrevendo; **não pare a produção para perguntar**. Todas as
+   perguntas vão no fim para o Caderno de perguntas ao autor. Regras
+   completas: prompt de textos, seção 4, "A experiência do autor no livro".
+9. **Leitor definido por livro.** A lâmina e as legendas falam com o público
    do livro ("a decisão que o leitor precisa tomar"); o arquiteto só quando
    ele for o público.
-9. **Fonte das figuras:** "Elaborada pelo autor." ou "Elaborada pelo autor com
+10. **Fonte das figuras:** "Elaborada pelo autor." ou "Elaborada pelo autor com
    base em Sobrenome (ano)" / na norma.
 
 ## Quando o agente é acionado
@@ -124,7 +132,17 @@ quadro final das imagens sem prompt. Comece por duas entradas como piloto.
 Monte o book de referência pelo `modelos/padrao-diagramacao-a4.md` (pré e
 pós-textuais da seção 11 do prompt de textos), aplique a lista de conferência
 final (seção 12) e grave Word e PDF na pasta de entregas. Use as skills
-`docx` e `pdf`. Entregue a lista de pendências do autor.
+`docx` e `pdf`. Entregue a lista de pendências do autor e o Caderno de perguntas ao autor.
+
+### 7. Caderno de perguntas ao autor e relatos
+
+Com o livro escrito e montado, gere o Caderno de perguntas ao autor
+(`modelos/caderno-perguntas-autor.md`), em Word e PDF, junto com o book.
+Ele reúne todas as marcas `[RELATO DO AUTOR]`, mais as dúvidas de conteúdo
+que só o autor resolve. Quando o autor responder (por escrito, por áudio
+transcrito ou na conversa), redija os relatos na voz dele, insira-os nos
+pontos marcados, retire as marcas sem resposta e entregue a nova versão
+para aprovação.
 
 ## Ao fim de cada livro
 
