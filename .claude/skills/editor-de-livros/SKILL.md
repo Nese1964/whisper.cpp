@@ -21,7 +21,9 @@ Leia os dois antes de escrever qualquer coisa do livro:
   prompt de 20 linhas, conferência das figuras.
 
 Apoio: `modelos/parametros-do-livro.md` (ficha do livro e dimensionamento),
-`modelos/caderno-perguntas-autor.md` (perguntas ao autor) e
+`modelos/caderno-perguntas-autor.md` (perguntas ao autor),
+`modelos/perfil-do-autor.md` (formação, obras, trajetória; base do "Sobre o
+autor", das remissões e das perguntas de relato) e
 `modelos/padrao-diagramacao-a4.md` (book de referência A4).
 
 As regras fixas abaixo prevalecem sobre os documentos quando houver diferença.
@@ -53,7 +55,7 @@ As regras fixas abaixo prevalecem sobre os documentos quando houver diferença.
    dado, nunca em série. Sempre "você", nunca "tu".
 8. **A experiência do autor é a marca do livro e nunca é inventada.** O
    autor tem 62 anos, 40 de construção civil, e é especialista em
-   gerenciamento de projetos. Onde um estudo de caso ou uma passagem vivida
+   gerenciamento de projetos (perfil completo em `modelos/perfil-do-autor.md`). Onde um estudo de caso ou uma passagem vivida
    por ele reforça o texto, marque `[RELATO DO AUTOR R-N.M: pergunta]` e
    siga escrevendo; **não pare a produção para perguntar**. Todas as
    perguntas vão no fim para o Caderno de perguntas ao autor. Regras
