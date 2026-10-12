@@ -1,6 +1,7 @@
 # Estrutura do livro ideal
 
-Modelo-base. Adapte ao índice da pasta do livro; itens marcados (opcional)
+Resumo. A ordem oficial está na seção 11 de `padrao-editorial-nese-v2.md`
+(ABNT NBR 6029:2023); em caso de diferença, vale o padrão. Adapte ao índice da pasta do livro; itens marcados (opcional)
 entram conforme o tipo de livro.
 
 ## Elementos pré-textuais

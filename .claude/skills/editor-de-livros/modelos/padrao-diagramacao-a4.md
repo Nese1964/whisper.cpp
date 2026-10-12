@@ -20,24 +20,29 @@ Toda imagem, ilustração, infográfico ou diagrama:
 ...fim do parágrafo anterior.
 [QUEBRA DE PÁGINA]
 ┌──────────── página A4 inteira ────────────┐
-│ Figura 3.2 — Título da figura             │
+│ Figura 3.2 – Título da figura             │
 │                                           │
-│        (imagem ocupando a página)         │
+│   (caixa da ilustração, ~16,8 cm altura)  │
 │                                           │
 │ Legenda (15 linhas)                       │
-│ Fonte: <autor>                            │
+│ Fonte: Elaborada pelo autor.              │
 └───────────────────────────────────────────┘
 [QUEBRA DE PÁGINA]
 Parágrafo seguinte continua aqui...
 ```
 
-- Enquanto a imagem não existe, a página traz um quadro reservado com o
-  número, o título e o prompt resumido da figura.
-- Tabelas pequenas ficam no texto; tabelas maiores que meia página também vão
-  para página própria.
+- Enquanto a imagem não existe, a página traz a caixa reservada
+  "Ilustração a produzir", com título, legenda e fonte.
+- Quadros: "Quadro N.M – Título", linha de cabeçalho e fonte abaixo. Quadros
+  pequenos ficam no texto; maiores que meia página vão para página própria.
+- Abertura de capítulo: lâmina em caixa sombreada "Por que isto interessa a
+  [público]" (padrão NESE, seção 6).
+- Sumário e listas sem caixa alta, com pontilhado até o número da página.
+- Vírgula decimal, ponto de milhar, espaço entre número e unidade.
 
 ## Entrega
 
 - Sempre dois arquivos com o mesmo conteúdo: `<Titulo>.docx` e `<Titulo>.pdf`.
-- Gravar em Google Drive → `agente_Claude/<título do livro>/`.
+- Gravar no Drive pessoal (fjmnese@gmail.com, drive G:) →
+  `agente_Claude/<título do livro>/<data>/`. Nunca no Drive da blue81.
 - Para entregas parciais: `<Titulo>_Cap-03.docx` / `.pdf`.
