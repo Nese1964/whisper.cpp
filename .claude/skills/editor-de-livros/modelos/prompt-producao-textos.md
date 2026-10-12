@@ -20,7 +20,7 @@ Preencha os campos abaixo e mantenha o bloco no início do prompt. Tudo o que ve
 | Público da lâmina              | \[por exemplo: ao arquiteto e ao engenheiro; ao projetista e ao arquiteto responsável pelo projeto; ao arquiteto e ao dono do empreendimento\]      |
 | Pergunta própria da lâmina     | \[por que \[o público do livro\] precisa considerar o tema deste livro neste ponto\]                                                              |
 | Normas e regulação do setor    | \[órgãos e famílias de normas que regem o tema: ABNT, Anvisa, ISO, NFPA, legislação, resoluções\]                                                   |
-| Forma de comunicar             | \[registro: técnico-acadêmico, didático ou manual prático; tratamento: impessoal ou "você"; nível do leitor\] |
+| Forma de comunicar             | \[tom dialógico, "você" e "nós" (padrão do autor, seção 4); nível do leitor; ajustes próprios deste livro, se houver\] |
 | Limite de páginas e prazo      | \[número de páginas previsto; data de entrega à editora\]                                                                                           |
 | Pendências da versão anterior  | \[listar, ou "nenhuma registrada"\]                                                                                                                 |
 | Anexos previstos               | \[normas, guias e documentos de origem do tema, com autoria confirmada\]                                                                            |
@@ -83,7 +83,7 @@ Valem para todo texto produzido ou revisado, inclusive legendas, quadros, tabela
 
 **Princípios**
 
-1.  Português do Brasil, registro técnico e acadêmico maduro, como um profissional experiente escreveria para colegas. Preciso, direto, com cara de texto escrito por uma pessoa.
+1.  Português do Brasil, registro técnico maduro, como um profissional experiente que conversa com o leitor. Preciso, direto, com cara de texto escrito por uma pessoa. A voz do livro é a do tom dialógico (ver "Voz do texto", abaixo).
 
 2.  Na revisão, preservar a voz e a estrutura do autor: corrigir o necessário e não reescrever o que já funciona. Edição mínima, no trecho exato.
 
@@ -96,6 +96,24 @@ Valem para todo texto produzido ou revisado, inclusive legendas, quadros, tabela
 6.  Raciocínio em prosa, com conectivos. Listas só para itens de fato enumeráveis.
 
 7.  Começar pelo assunto. Terminar quando o argumento termina.
+
+**Voz do texto: tom dialógico**
+
+O livro fala com o leitor. O tom dialógico, segunda pessoa ("você") combinada com a primeira pessoa do plural ("nós"), é hoje o mais elegante, didático e acolhedor na literatura técnica. A voz impessoal (terceira pessoa sem sujeito, "verifica-se", "considera-se", voz passiva em série) é o padrão antigo da academia: afasta o leitor e deixa o texto frio e difícil de ler. Por isso:
+
+1.  **"Você" para o leitor agir e decidir.** Instruções, verificações, decisões e consequências práticas: "Antes de definir a rota de fuga, você confere a lotação do pavimento." Sempre "você", nunca "tu"; verbo na terceira pessoa ("você verifica").
+
+2.  **"Nós" para o raciocínio feito em conjunto e para as remissões.** "Vamos comparar as duas soluções", "Como vimos na Seção 2.3", "Agora podemos dimensionar a escada." O "nós" é o autor acompanhando o leitor, nunca o plural de modéstia vazio.
+
+3.  **Impessoal só onde a neutralidade é exigida, e sem empilhar.** Requisitos de norma, definições, dados e resultados de ensaio podem vir em frase impessoal ou com o sujeito real ("A ABNT NBR 9077:2001 exige…", "A norma define…"). Nunca duas ou três frases seguidas em "verifica-se", "observa-se", "constata-se"; prefira o sujeito concreto.
+
+4.  **Distribuição no capítulo.** Lâmina e aberturas de seção: "você" e "nós". Passagens práticas, exemplos e casos: "você". Normas, definições, tabelas e fórmulas: sujeito concreto ou impessoal pontual. Síntese e fecho: "nós", ligando o capítulo aos demais.
+
+5.  **Legendas** no mesmo tom: "Observe que…", "Note como…", "Repare que…", variando a abertura de legenda para legenda.
+
+6.  **Dialógico não é informal.** Sem gíria, sem exclamações, sem "a gente", sem intimidade forçada ("caro leitor", "querido aluno"). Diálogo também não justifica pergunta retórica respondida em seguida nem anúncio do conteúdo ("Neste capítulo vamos ver…"); a lâmina já cumpre esse papel.
+
+7.  **Na revisão de livro existente**, texto impessoal é convertido para o tom dialógico só onde a frase ganha clareza; a conversão entra no plano de revisão e conta como edição registrada.
 
 **Vocabulário a evitar (vícios de IA)**
 

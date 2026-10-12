@@ -22,7 +22,7 @@ autor.
 | Tipo de livro | manual técnico / didático / uso em obra / profissional liberal / arquitetura / engenharia / outro |
 | Público-alvo (lâmina e legendas) | "Por que isto interessa a [ ]" |
 | Pergunta própria da lâmina | por que [o público] precisa considerar o tema neste ponto |
-| Forma de comunicar | registro (técnico-acadêmico / didático / manual prático); tratamento (impessoal / "você"); nível do leitor |
+| Forma de comunicar | tom dialógico, "você" e "nós" (padrão); impessoal só pontual; nível do leitor; ajustes deste livro |
 | Normas e regulação do setor | |
 | Tamanho alvo (páginas A4) e prazo | |
 | Anexos previstos | |

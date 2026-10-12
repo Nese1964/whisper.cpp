@@ -47,10 +47,13 @@ As regras fixas abaixo prevalecem sobre os documentos quando houver diferença.
    figuras no fim da seção.
 6. **Legenda de 15 linhas** (cerca de 135 a 180 palavras), a mesma no livro e
    no Documento 2.
-7. **Leitor definido por livro.** A lâmina e as legendas falam com o público
+7. **Tom dialógico:** "você" para o leitor agir e decidir, "nós" para o
+   raciocínio em conjunto e as remissões; impessoal só em norma, definição e
+   dado, nunca em série. Sempre "você", nunca "tu".
+8. **Leitor definido por livro.** A lâmina e as legendas falam com o público
    do livro ("a decisão que o leitor precisa tomar"); o arquiteto só quando
    ele for o público.
-8. **Fonte das figuras:** "Elaborada pelo autor." ou "Elaborada pelo autor com
+9. **Fonte das figuras:** "Elaborada pelo autor." ou "Elaborada pelo autor com
    base em Sobrenome (ano)" / na norma.
 
 ## Quando o agente é acionado
@@ -63,9 +66,11 @@ linguagem simples:
 1. **Qual é o tema do livro?** E o **título** (ou proponha dois ou três).
 2. **Quem é o público-alvo?** Quem vai ler e usar o livro, e em que situação
    (estudo, obra, projeto, fiscalização, atendimento).
-3. **Como é a sua forma de comunicar neste livro?** Técnico-acadêmico,
-   didático ou manual prático; impessoal ou falando com "você"; nível do
-   leitor. Se o autor tiver um texto seu como exemplo, peça para ler.
+3. **Forma de comunicar:** o padrão do autor é o **tom dialógico**, "você"
+   combinado com "nós", com voz impessoal só pontual (seção 4 do prompt de
+   textos, "Voz do texto"). Pergunte apenas o nível do leitor e se este
+   livro tem algum ajuste próprio. Se houver texto do autor como exemplo,
+   peça para ler.
 4. **Tamanho:** quantas páginas A4 (para teste, um livro pequeno de 60 a 100
    páginas).
 5. **Normas e regulação** que o livro precisa seguir.
